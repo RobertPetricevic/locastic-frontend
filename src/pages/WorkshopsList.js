@@ -1,5 +1,7 @@
 import React from "react";
 
+import WorkhopBox from "../components/WorkshopBox";
+
 const WorkshopsList = (props) => {
   return (
     <div className="workshopPage">
@@ -23,7 +25,9 @@ const WorkshopsList = (props) => {
           <i class="fas fa-bolt categoryIcon"></i>Marketing
         </p>
       </div>
-      <div className="main"></div>
+      <div className="main">
+        <WorkhopBox />
+      </div>
     </div>
   );
 };

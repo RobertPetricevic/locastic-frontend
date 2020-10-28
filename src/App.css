@@ -30,6 +30,9 @@
 }
 
 .footerContainer {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
   height: 60px;
   background-color: var(--lighterGray);
   display: flex;
@@ -39,4 +42,76 @@
 
 .footerText {
   color: var(--lightGray);
+}
+
+/* ------------------ WORKSHOPSLIST PAGE ------------------ */
+
+.workshopPage {
+  display: grid;
+  grid-template-columns: 1fr 4em 1fr 1fr 1fr;
+  grid-template-rows: 100px 1em 1fr;
+  grid-template-areas:
+    "filter     .   info    info    info"
+    ".          .       .       .       ."
+    "cagetories .   main    main    main";
+  padding: 20px;
+}
+
+.filterBy {
+  grid-area: filter;
+  align-self: end;
+  color: var(--lightGray);
+  font-size: 0.7rem;
+  margin-left: 30px;
+}
+
+.infoBox {
+  grid-area: info;
+  align-self: end;
+}
+
+.pageTitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.displayed {
+  font-size: 0.7rem;
+  color: var(--lightGray);
+}
+
+.categoriesBox {
+  grid-area: cagetories;
+}
+
+/* NE RADI FIRST CHILD AAAAAAAAAAAAAAA */
+
+.categoriesBox:first-child {
+  margin-left: 40px;
+}
+
+.all {
+  margin-left: 30px;
+}
+
+.main {
+  grid-area: main;
+}
+
+.category {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.category:hover,
+.category:focus {
+  color: var(--blue);
+}
+
+.categoryIcon {
+  width: 30px;
+}
+
+.currentCategory {
+  color: var(--blue);
 }

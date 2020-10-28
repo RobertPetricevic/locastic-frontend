@@ -7,7 +7,7 @@
   --red: #ff392e;
 }
 
-/* ------------------ HEADER ------------------ */
+/* ------------------ HEADER AND FOOTER ------------------ */
 
 .headerContainer {
   display: flex;
@@ -27,4 +27,16 @@
 .headerCartText {
   font-size: 13px;
   margin-left: 10px;
+}
+
+.footerContainer {
+  height: 60px;
+  background-color: var(--lighterGray);
+  display: flex;
+  align-items: center;
+  padding-left: 60px;
+}
+
+.footerText {
+  color: var(--lightGray);
 }

@@ -279,5 +279,182 @@ ion-icon {
 /* ------------------ WORKSHOPSDETAILS PAGE ------------------ */
 
 .detailsPage {
-  padding: 30px 20px;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  padding-top: 30px;
+}
+
+.topContent {
+  display: flex;
+  height: 800px;
+  padding: 0 10px;
+}
+
+.bottomContent {
+  background-color: var(--lighterGray);
+  height: 400px;
+}
+
+.goBack {
+  width: 20%;
+}
+
+.goBackBox {
+  display: flex;
+  height: 30px;
+  width: fit-content;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.goBackBox:hover {
+  color: rgb(102, 102, 102);
+}
+
+.detailsBox {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  overflow: hidden;
+}
+
+.detailsImg {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.detailsImgContainer {
+  height: 40%;
+}
+
+.detailsContent {
+  display: flex;
+  justify-content: space-between;
+  height: 60%;
+}
+
+.detailsInfo {
+  width: 60%;
+}
+
+.detailsBuy {
+  width: 30%;
+}
+
+.detailsSideInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%;
+  margin: 10px 0;
+}
+
+.detailsCategoryIconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--darkGray);
+  color: white;
+  border-radius: 5px;
+  width: 20px;
+  height: 20px;
+}
+
+.detailsCategoryIcon {
+  font-size: 0.6rem;
+}
+
+.date,
+.time {
+  font-size: 0.6rem;
+  font-weight: 700;
+}
+
+.detailsTitle {
+  color: var(--blue);
+}
+
+.detailsDescription {
+  font-size: 0.9rem;
+}
+
+.detailsSpeaker {
+  font-size: 1.1rem;
+  margin: 10px 0 20px;
+}
+
+.similarBox {
+  margin-left: 20%;
+}
+
+.similarShops {
+  display: flex;
+}
+
+.similarTitle {
+  margin: 40px 0 20px;
+}
+
+.buyCard {
+  max-width: 200px;
+  height: fit-content;
+  padding: 20px;
+  margin-top: 30px;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  -webkit-box-shadow: 1px 1px 34px -9px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 1px 34px -9px rgba(0, 0, 0, 0.75);
+  box-shadow: 1px 1px 34px -9px rgba(0, 0, 0, 0.75);
+}
+
+.cardText {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.cardPrice {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.cardPrice span {
+  font-size: 0.7rem;
+}
+
+.buyInfo {
+  display: flex;
+  /* justify-content: center; */
+  flex-wrap: wrap;
+}
+
+select {
+  border: 1px solid var(--blue);
+  padding: 5px 3px;
+  outline: none;
+  border-radius: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.cardBtn {
+  font-size: 0.8rem;
+  font-weight: 700;
+  background-color: var(--yellow);
+  padding: 0.6em 1.3em;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.cardTotal {
+  font-size: 0.5rem;
+  color: var(--lightGray);
+  text-align: center;
 }

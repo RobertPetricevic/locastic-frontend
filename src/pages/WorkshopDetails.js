@@ -21,19 +21,20 @@ const WorkshopDetails = (props) => {
     <div className="detailsPage">
       <div className="topContent">
         <div className="goBack">
-          <p className="goBackText">
-            <ion-icon name="arrow-back"></ion-icon>Back
-          </p>
+          <div className="goBackBox">
+            <ion-icon name="arrow-back" />
+            <p>Back</p>
+          </div>
         </div>
         <div className="detailsBox">
-          <div className="detailsImg">
-            <img src={workshopInfo.imageUrl} alt="img" />
+          <div className="detailsImgContainer">
+            <img src={workshopInfo.imageUrl} className="detailsImg" alt="img" />
           </div>
           <div className="detailsContent">
             <div className="detailsInfo">
               <div className="detailsSideInfo">
                 <div className="detailsCategoryIconContainer">
-                  <i className="fas fa-paint-brush"></i>
+                  <i className="fas fa-paint-brush detailsCategoryIcon"></i>
                 </div>
                 <p className="date">
                   <i className="far fa-calendar-alt"></i>{" "}
@@ -46,9 +47,7 @@ const WorkshopDetails = (props) => {
               </div>
               <div className="detailsMainInfo">
                 <h1 className="detailsTitle">{workshopInfo.title}</h1>
-                <h2 className="detailsSpeaker">
-                  with <span>{userName}</span>
-                </h2>
+                <h2 className="detailsSpeaker">with {userName}</h2>
                 <p className="detailsDescription">{workshopInfo.desc}</p>
               </div>
             </div>
@@ -59,7 +58,7 @@ const WorkshopDetails = (props) => {
                   {workshopInfo.price} <span>EUR</span>
                 </p>
                 <div className="buyInfo">
-                  <select name="num" id="num">
+                  <select className="buySelect" name="num" id="num">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>

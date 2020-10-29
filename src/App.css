@@ -29,6 +29,19 @@ img {
   margin-right: 100px;
 }
 
+ion-icon {
+  font-size: 1.5rem;
+}
+
+.headerIconContainer {
+  color: black;
+  cursor: pointer;
+}
+
+.headerIconContainer:hover {
+  color: rgb(102, 102, 102);
+}
+
 .headerCartText {
   font-size: 13px;
   margin-left: 10px;
@@ -78,7 +91,8 @@ img {
   font-weight: 700;
   border-bottom: 1px solid var(--blue);
   align-self: start;
-  justify-self: start;
+  justify-self: end;
+  margin-right: 150px;
 }
 
 .loadMore:hover {
@@ -196,18 +210,21 @@ img {
 }
 
 .boxIconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--darkGray);
   color: white;
-  display: inline;
-  padding: 5px;
   border-radius: 5px;
   position: absolute;
   right: 10px;
   top: -15px;
+  width: 25px;
+  height: 25px;
 }
 
 .boxFloatingIcon {
-  font-size: 0.8rem;
+  font-size: 0.6rem;
 }
 
 .boxInfo {

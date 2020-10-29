@@ -7,7 +7,9 @@ const Header = (props) => {
     <div className="headerContainer">
       <Logo width={50} height={40} />
       <div className="headerCartContainer">
-        <i className="fas fa-shopping-cart "></i>
+        <div className="headerIconContainer">
+          <ion-icon name={`cart${1 === 1 ? "-outline" : null}`}></ion-icon>
+        </div>
         <p className="headerCartText">Cart is Empty</p>
       </div>
     </div>

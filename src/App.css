@@ -275,3 +275,9 @@ ion-icon {
   text-align: center;
   cursor: pointer;
 }
+
+/* ------------------ WORKSHOPSDETAILS PAGE ------------------ */
+
+.detailsPage {
+  padding: 30px 20px;
+}

@@ -7,7 +7,7 @@ const Header = (props) => {
     <div className="headerContainer">
       <Logo width={50} height={40} />
       <div className="headerCartContainer">
-        <i class="fas fa-shopping-cart"></i>
+        <i className="fas fa-shopping-cart "></i>
         <p className="headerCartText">Cart is Empty</p>
       </div>
     </div>

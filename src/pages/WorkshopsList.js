@@ -2,7 +2,13 @@ import React from "react";
 
 import WorkhopBox from "../components/WorkshopBox";
 
+import WORKSHOPS from "../data/workshops";
+
 const WorkshopsList = (props) => {
+  const displayedWorkshops = WORKSHOPS.map((workshop) => (
+    <WorkhopBox key={workshop.id} workshopInfo={workshop} />
+  ));
+
   return (
     <div className="workshopPage">
       <p className="filterBy">Filter by category:</p>
@@ -13,21 +19,20 @@ const WorkshopsList = (props) => {
       <div className="categoriesBox">
         <p className="category all">All</p>
         <p className="category">
-          <i class="fas fa-paint-brush categoryIcon"></i>Design
+          <i className="fas fa-paint-brush categoryIcon"></i>Design
         </p>
         <p className="category">
-          <i class="fas fa-desktop categoryIcon"></i>Frontend
+          <i className="fas fa-desktop categoryIcon"></i>Frontend
         </p>
         <p className="category">
-          <i class="fas fa-code categoryIcon"></i>Backend
+          <i className="fas fa-code categoryIcon"></i>Backend
         </p>
         <p className="category">
-          <i class="fas fa-bolt categoryIcon"></i>Marketing
+          <i className="fas fa-bolt categoryIcon"></i>Marketing
         </p>
       </div>
-      <div className="main">
-        <WorkhopBox />
-      </div>
+      <div className="mainContent">{displayedWorkshops}</div>
+      <p className="loadMore">Load More</p>
     </div>
   );
 };

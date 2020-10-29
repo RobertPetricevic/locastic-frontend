@@ -53,12 +53,14 @@ img {
 
 .workshopPage {
   display: grid;
-  grid-template-columns: 1fr 4em 1fr 1fr 1fr;
-  grid-template-rows: 100px 1em 1fr;
+  grid-template-columns: 1fr 2em 3fr;
+  grid-template-rows: 100px 2em 1fr 2em 30px;
   grid-template-areas:
-    "filter     .   info    info    info"
-    ".          .       .       .       ."
-    "cagetories .   main    main    main";
+    "filter     .   info"
+    ".          .      ."
+    "cagetories .   main"
+    ".          .       ."
+    ".          .   load";
   padding: 20px;
 }
 
@@ -68,6 +70,19 @@ img {
   color: var(--lightGray);
   font-size: 0.7rem;
   margin-left: 30px;
+}
+
+.loadMore {
+  grid-area: load;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-bottom: 1px solid var(--blue);
+  align-self: start;
+  justify-self: start;
+}
+
+.loadMore:hover {
+  color: var(--blue);
 }
 
 .infoBox {
@@ -99,10 +114,11 @@ img {
   margin-left: 30px;
 }
 
-.main {
+.mainContent {
   grid-area: main;
-  border: 3px solid red;
-  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .category {
@@ -123,6 +139,9 @@ img {
   color: var(--blue);
 }
 
+@media (max-width: 590px) {
+}
+
 /* ------------------ WORKSHOPSLIST BOX ------------------ */
 
 .workshopBox {
@@ -133,18 +152,29 @@ img {
   -moz-box-shadow: 1px 1px 18px 4px rgba(0, 0, 0, 0.16);
   box-shadow: 1px 1px 18px 4px rgba(0, 0, 0, 0.16);
   overflow: hidden;
+  margin-right: 15px;
+  margin-bottom: 15px;
 }
 
-.workshopBox:hover {
-  -webkit-box-shadow: 1px 1px 16px 20px rgba(0, 0, 0, 0.16);
-  -moz-box-shadow: 1px 1px 16px 20px rgba(0, 0, 0, 0.16);
-  box-shadow: 1px 1px 16px 20px rgba(0, 0, 0, 0.16);
+.boxImgContainer {
+  height: 40%;
+  width: 100%;
+  background-color: white;
 }
 
 .boxImg {
-  height: 40%;
+  height: 100%;
   width: 100%;
   object-fit: cover;
+  cursor: pointer;
+}
+
+.boxImg:hover {
+  opacity: 0.8;
+}
+
+.boxImgContainer:hover {
+  background-color: black;
 }
 
 .boxContent {
@@ -194,6 +224,11 @@ img {
   color: var(--blue);
   font-weight: 700;
   font-size: 15px;
+  cursor: pointer;
+}
+
+.boxTitle:hover {
+  color: #005b7c;
 }
 
 .price {
@@ -213,4 +248,5 @@ img {
   font-weight: 700;
   border-radius: 3px;
   text-align: center;
+  cursor: pointer;
 }

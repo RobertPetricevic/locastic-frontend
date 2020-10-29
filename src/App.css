@@ -15,18 +15,26 @@ img {
 /* ------------------ HEADER AND FOOTER ------------------ */
 
 .headerContainer {
+  position: fixed;
+  top: 0px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 60px;
   padding: 5px 10px;
   background-color: var(--yellow);
+  z-index: 1;
 }
 
 .headerCartContainer {
   display: flex;
   align-items: center;
   margin-right: 100px;
+}
+
+Logo {
+  cursor: pointer;
 }
 
 ion-icon {
@@ -67,7 +75,7 @@ ion-icon {
 .workshopPage {
   display: grid;
   grid-template-columns: 1fr 2em 3fr;
-  grid-template-rows: 100px 2em 1fr 2em 30px;
+  grid-template-rows: 50px 2em 1fr 2em 30px;
   grid-template-areas:
     "filter     .   info"
     ".          .      ."
@@ -132,7 +140,7 @@ ion-icon {
   grid-area: main;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: start;
 }
 
 .category {

@@ -20,6 +20,12 @@ body::after {
   height: 60px;
 }
 
+body::before {
+  content: "";
+  display: block;
+  height: 60px;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

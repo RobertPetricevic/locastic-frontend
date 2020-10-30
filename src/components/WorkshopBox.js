@@ -45,7 +45,7 @@ const WorkshopBox = ({ workshopInfo }) => {
           <p className="price">
             {workshopInfo.price} <span>EUR</span>
           </p>
-          <a className="boxBtn">Add to cart</a>
+          <p className="boxBtn">Add to cart</p>
         </div>
       </div>
     </div>

@@ -58,7 +58,7 @@ const WorkshopDetails = (props) => {
                   {workshopInfo.price} <span>EUR</span>
                 </p>
                 <div className="buyInfo">
-                  <select className="buySelect" name="num" id="num">
+                  <select name="num" id="num">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>

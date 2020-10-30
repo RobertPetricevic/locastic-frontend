@@ -1,6 +1,8 @@
 :root {
   --yellow: #ffce25;
+  --hoverYellow: #bd9a1b;
   --blue: #0097cc;
+  --hoverBlue: #005b7c;
   --darkGray: #1d1d1b;
   --lightGray: #7f7f7f;
   --lighterGray: #f2f2f2;
@@ -12,7 +14,7 @@ img {
   display: block;
 }
 
-/* ------------------ HEADER AND FOOTER ------------------ */
+/* ------------------ HEADER ------------------ */
 
 .headerContainer {
   position: fixed;
@@ -22,38 +24,194 @@ img {
   justify-content: space-between;
   align-items: center;
   height: 60px;
-  padding: 5px 10px;
+  padding: 5px 100px 5px 10px;
   background-color: var(--yellow);
   z-index: 1;
 }
 
-.headerCartContainer {
-  display: flex;
-  align-items: center;
-  margin-right: 100px;
-}
-
-Logo {
+.logo {
   cursor: pointer;
 }
 
-ion-icon {
+/* ------------------ HEADER ------------------ */
+
+/* ------------------ CART ICON CONTAINER ------------------ */
+
+.CartContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.IconContainer ion-icon {
   font-size: 1.5rem;
 }
 
-.headerIconContainer {
+.IconContainer {
   color: black;
   cursor: pointer;
 }
 
-.headerIconContainer:hover {
-  color: rgb(102, 102, 102);
+.IconContainer:hover {
+  color: var(--lightGray);
 }
 
-.headerCartText {
-  font-size: 13px;
+.CartText {
+  font-size: 0.7rem;
+  font-weight: 700;
   margin-left: 10px;
 }
+
+.blueDot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: var(--blue);
+  border-radius: 5px;
+  left: 16px;
+  top: 2px;
+}
+
+/* ------------------ CART ICON CONTAINER ------------------ */
+
+/* ------------------ CART POPUP BOX ------------------ */
+
+.cartPopupBox {
+  position: fixed;
+  width: 250px;
+  height: 100vh;
+  top: 0px;
+  right: 0px;
+  padding: 0 10px;
+  background-color: white;
+  z-index: 1;
+}
+
+.popupHeader {
+  margin: 15px 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.exitBtn {
+  font-size: 1.6rem;
+  cursor: pointer;
+  transform: rotate(45deg);
+}
+
+.exitBtn:hover {
+  color: var(--lightGray);
+}
+
+.popupBuyBox {
+  width: 80%;
+  margin: 20px auto 0px auto;
+}
+
+.popupTotal {
+  font-size: 0.6rem;
+  color: var(--lightGray);
+}
+
+.popupPrice {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.popupPrice span {
+  font-size: 0.8rem;
+}
+
+.popupBtn {
+  background-color: var(--blue);
+  color: white;
+  font-size: 0.7rem;
+  padding: 1em 1.2em;
+  text-align: center;
+  margin-top: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popupBtn:hover {
+  background-color: var(--hoverBlue);
+}
+
+/* ------------------ CART POPUP BOX ------------------ */
+
+/* ------------------ WORKSHOP CART BOX ------------------ */
+
+.workshopCartBox {
+  display: flex;
+  background-color: var(--lighterGray);
+  height: 100px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.workshopCartBoxImgContainer {
+  width: 30%;
+}
+
+.workShopCartContent {
+  width: 70%;
+  padding: 10px;
+}
+
+.workshopCartBoxImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.workShopCartInfo {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.workShopCartBuy {
+  display: flex;
+  align-items: center;
+}
+
+.workShopCartBuy select {
+  border: 1px solid var(--blue);
+  padding: 4px 2px;
+  outline: none;
+  border-radius: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.workShopCartTitle {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+.workShopCartTrash ion-icon {
+  font-size: 1rem;
+  color: var(--lightGray);
+  cursor: pointer;
+}
+
+.workShopCartTrash ion-icon:hover {
+  color: var(--darkGray);
+}
+
+.workShopCartPrice {
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.workShopCartPrice span {
+  font-size: 0.6rem;
+}
+
+/* ------------------ WORKSHOP CART BOX ------------------ */
+
+/* ------------------ FOOTER ------------------ */
 
 .footerContainer {
   position: absolute;
@@ -70,7 +228,9 @@ ion-icon {
   color: var(--lightGray);
 }
 
-/* ------------------ WORKSHOPSLIST PAGE ------------------ */
+/* ------------------ FOOTER ------------------ */
+
+/* ------------------ WORKSHOPS LIST PAGE ------------------ */
 
 .workshopPage {
   display: grid;
@@ -101,6 +261,7 @@ ion-icon {
   align-self: start;
   justify-self: end;
   margin-right: 150px;
+  cursor: pointer;
 }
 
 .loadMore:hover {
@@ -124,12 +285,6 @@ ion-icon {
 
 .categoriesBox {
   grid-area: cagetories;
-}
-
-/* NE RADI FIRST CHILD AAAAAAAAAAAAAAA */
-
-.categoriesBox:first-child {
-  margin-left: 40px;
 }
 
 .all {
@@ -161,14 +316,13 @@ ion-icon {
   color: var(--blue);
 }
 
-@media (max-width: 590px) {
-}
+/* ------------------ WORKSHOPS LIST PAGE ------------------ */
 
-/* ------------------ WORKSHOPSLIST BOX ------------------ */
+/* ------------------ WORKSHOP BOX ------------------ */
 
 .workshopBox {
-  height: 250px;
-  width: 170px;
+  height: 320px;
+  width: 210px;
   border-radius: 10px;
   -webkit-box-shadow: 1px 1px 18px 4px rgba(0, 0, 0, 0.16);
   -moz-box-shadow: 1px 1px 18px 4px rgba(0, 0, 0, 0.16);
@@ -181,7 +335,6 @@ ion-icon {
 .boxImgContainer {
   height: 40%;
   width: 100%;
-  background-color: white;
 }
 
 .boxImg {
@@ -248,12 +401,12 @@ ion-icon {
 .boxTitle {
   color: var(--blue);
   font-weight: 700;
-  font-size: 15px;
+  font-size: 0.9rem;
   cursor: pointer;
 }
 
 .boxTitle:hover {
-  color: #005b7c;
+  color: var(--hoverBlue);
 }
 
 .price {
@@ -262,21 +415,27 @@ ion-icon {
 }
 
 .price span {
-  font-size: 8px;
+  font-size: 0.6rem;
 }
 
 .boxBtn {
   background-color: var(--yellow);
   display: inline-block;
   padding: 8px 20px;
-  font-size: 10px;
+  font-size: 0.7rem;
   font-weight: 700;
   border-radius: 3px;
   text-align: center;
   cursor: pointer;
 }
 
-/* ------------------ WORKSHOPSDETAILS PAGE ------------------ */
+.boxBtn:hover {
+  background-color: var(--hoverYellow);
+}
+
+/* ------------------ WORKSHOP BOX ------------------ */
+
+/* ------------------ WORKSHOP DETAILS PAGE ------------------ */
 
 .detailsPage {
   display: flex;
@@ -293,7 +452,7 @@ ion-icon {
 
 .bottomContent {
   background-color: var(--lighterGray);
-  height: 400px;
+  height: 450px;
 }
 
 .goBack {
@@ -310,7 +469,7 @@ ion-icon {
 }
 
 .goBackBox:hover {
-  color: rgb(102, 102, 102);
+  color: var(--lightGray);
 }
 
 .detailsBox {
@@ -343,7 +502,7 @@ ion-icon {
 }
 
 .detailsBuy {
-  width: 30%;
+  width: 35%;
 }
 
 .detailsSideInfo {
@@ -401,9 +560,9 @@ ion-icon {
 }
 
 .buyCard {
-  max-width: 200px;
+  max-width: 210px;
   height: fit-content;
-  padding: 20px;
+  padding: 25px 30px;
   margin-top: 30px;
   margin-right: 20px;
   display: flex;
@@ -431,17 +590,17 @@ ion-icon {
 
 .buyInfo {
   display: flex;
-  /* justify-content: center; */
   flex-wrap: wrap;
 }
 
-select {
+.buyInfo select {
   border: 1px solid var(--blue);
   padding: 5px 3px;
   outline: none;
   border-radius: 5px;
   margin-right: 5px;
   margin-bottom: 5px;
+  cursor: pointer;
 }
 
 .cardBtn {
@@ -451,6 +610,11 @@ select {
   padding: 0.6em 1.3em;
   border-radius: 10px;
   margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.cardBtn:hover {
+  background-color: var(--hoverYellow);
 }
 
 .cardTotal {
@@ -458,3 +622,5 @@ select {
   color: var(--lightGray);
   text-align: center;
 }
+
+/* ------------------ WORKSHOP DETAILS PAGE ------------------ */

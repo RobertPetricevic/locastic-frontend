@@ -41,8 +41,6 @@ img {
 
 /* ------------------ HEADER ------------------ */
 
-/* ------------------ CART ICON CONTAINER ------------------ */
-
 .cartContainer {
   position: relative;
   display: flex;
@@ -62,12 +60,6 @@ img {
   color: var(--lightGray);
 }
 
-.cartText {
-  font-size: 0.7rem;
-  font-weight: 700;
-  margin-left: 10px;
-}
-
 .blueDot {
   position: absolute;
   width: 10px;
@@ -77,14 +69,6 @@ img {
   left: 16px;
   top: 2px;
 }
-
-@media (max-width: 500px) {
-  .cartText {
-    display: none;
-  }
-}
-
-/* ------------------ CART ICON CONTAINER ------------------ */
 
 /* ------------------ CART POPUP BOX ------------------ */
 
@@ -103,6 +87,12 @@ img {
   margin: 15px 10px;
   display: flex;
   justify-content: space-between;
+}
+
+.cartPopupText {
+  font-size: 0.7rem;
+  font-weight: 700;
+  margin-left: 10px;
 }
 
 .exitBtn {
@@ -147,6 +137,13 @@ img {
 
 .popupBtn:hover {
   background-color: var(--hoverBlue);
+}
+
+@media (max-width: 500px) {
+  .cartPopupBox {
+    width: 100vw;
+    padding: 0 30px;
+  }
 }
 
 /* ------------------ CART POPUP BOX ------------------ */
@@ -219,6 +216,37 @@ img {
 
 .workShopCartPrice span {
   font-size: 0.6rem;
+}
+
+@media (max-width: 500px) {
+  .workshopCartBox {
+    height: 120px;
+  }
+  .workShopCartInfo {
+    margin-bottom: 15px;
+  }
+  .workShopCartTitle {
+    font-size: 1.2rem;
+  }
+  .workShopCartTrash ion-icon {
+    font-size: 1.3rem;
+  }
+  .workShopCartBuy {
+    margin-bottom: 10px;
+    width: fit-content;
+  }
+  .workShopCartBuy select {
+    border: 1px solid var(--blue);
+    padding: 6px 10px;
+    margin-right: 20px;
+  }
+  .workShopCartPrice {
+    font-size: 1.3rem;
+  }
+
+  .workShopCartPrice span {
+    font-size: 0.8rem;
+  }
 }
 
 /* ------------------ WORKSHOP CART BOX ------------------ */

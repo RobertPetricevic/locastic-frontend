@@ -1,10 +1,9 @@
 import React from "react";
 
 import WorkshopCartBox from "./WorkshopCartBox";
-import CartIconContainer from "./CartIconContainer";
 
 const CartPopupBox = (props) => {
-  const cartItems = [1, 2, 3];
+  const cartItems = [];
 
   const cartText = (num) => {
     if (num === 0) return "Cart is Empty";
@@ -15,7 +14,15 @@ const CartPopupBox = (props) => {
   return (
     <div className="cartPopupBox">
       <div className="popupHeader">
-        <CartIconContainer />
+        <div className="cartContainer">
+          <div className="iconContainer">
+            <ion-icon
+              name={`cart${cartItems.length === 0 ? "-outline" : ""}`}
+            ></ion-icon>
+          </div>
+          <p className="cartPopupText">{cartText(cartItems.length)}</p>
+          {cartItems.length !== 0 && <div className="blueDot"></div>}
+        </div>
         <p className="exitBtn">+</p>
       </div>
       <div className="popupContent">

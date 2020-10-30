@@ -9,7 +9,7 @@ const Header = (props) => {
   return (
     <div className="headerContainer">
       <Logo className="logo" width={50} height={40} />
-      <CartPopupBox />
+      {/* <CartPopupBox /> */}
       <CartIconContainer header />
     </div>
   );

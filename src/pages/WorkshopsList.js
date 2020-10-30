@@ -8,7 +8,7 @@ import WORKSHOPS from "../data/workshops";
 const WorkshopsList = (props) => {
   const displayedWorkshops = WORKSHOPS.map((workshop) => (
     <>
-      <MobileWorkshopBox key={workshop.id} workshopInfo={workshop} />
+      <MobileWorkshopBox key={`m${workshop.id}`} workshopInfo={workshop} />
       <WorkhopBox key={workshop.id} workshopInfo={workshop} />
     </>
   ));

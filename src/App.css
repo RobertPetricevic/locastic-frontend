@@ -803,7 +803,7 @@ img {
 
 /* ------------------ WORKSHOP DETAILS PAGE ------------------ */
 
-/* ------------------ CHECKOUT MODAL ------------------ */
+/* ------------------ MODAL ------------------ */
 
 .modalContainer {
   background-color: rgba(0, 0, 0, 0.8);
@@ -823,13 +823,18 @@ img {
   margin-bottom: auto;
   border-radius: 10px;
   padding: 50px;
-  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .exitBtnFloat {
   position: absolute;
-  right: 50px;
-  top: 50px;
+  right: 0px;
+  top: 0px;
+}
+
+.modalHeader {
+  position: relative;
 }
 
 .modalTitle {
@@ -839,9 +844,10 @@ img {
 }
 
 .modalDescription {
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   max-width: 200px;
   margin-bottom: 15px;
+  color: var(--lightGray);
 }
 
 .inputContainer {
@@ -855,7 +861,7 @@ img {
   align-items: center;
 }
 
-.checkoutBTn {
+.checkoutBtn {
   background-color: var(--yellow);
   width: fit-content;
   font-size: 0.7rem;
@@ -865,7 +871,7 @@ img {
   cursor: pointer;
 }
 
-.checkoutBTn:hover {
+.checkoutBtn:hover {
   background-color: var(--hoverYellow);
 }
 
@@ -928,4 +934,46 @@ img {
   cursor: pointer;
 }
 
-/* ------------------ CHECKOUT MODAL ------------------ */
+@media (max-width: 500px) {
+  .modalContent {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: -50px;
+  }
+  .dateGenderInputs {
+    display: block;
+  }
+  .shortInput {
+    width: 100%;
+  }
+  .checkoutBTn {
+    width: 100%;
+    text-align: center;
+    padding: 1em;
+  }
+  .inputContainer {
+    margin-bottom: 25px;
+  }
+  .modalMobileHeader {
+    margin: auto 0px;
+  }
+  .checkoutBtn {
+    width: 100%;
+    text-align: center;
+    padding: 1.4em;
+  }
+  .checkoutMobileBtn {
+    margin-top: auto;
+    margin-bottom: 80px;
+  }
+  .modalTitle {
+    font-size: 1.9rem;
+  }
+
+  .modalDescription {
+    font-size: 0.8rem;
+  }
+}
+
+/* ------------------ MODAL ------------------ */

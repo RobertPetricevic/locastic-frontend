@@ -233,44 +233,19 @@ img {
 /* ------------------ WORKSHOPS LIST PAGE ------------------ */
 
 .workshopPage {
-  display: grid;
-  grid-template-columns: 1fr 2em 3fr;
-  grid-template-rows: 50px 2em 1fr 2em 30px;
-  grid-template-areas:
-    "filter     .   info"
-    ".          .      ."
-    "cagetories .   main"
-    ".          .       ."
-    ".          .   load";
   padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
-.filterBy {
-  grid-area: filter;
-  align-self: end;
-  color: var(--lightGray);
-  font-size: 0.7rem;
-  margin-left: 30px;
-}
-
-.loadMore {
-  grid-area: load;
-  font-size: 0.7rem;
-  font-weight: 700;
-  border-bottom: 1px solid var(--blue);
-  align-self: start;
-  justify-self: end;
-  margin-right: 150px;
-  cursor: pointer;
-}
-
-.loadMore:hover {
-  color: var(--blue);
+.filterBy,
+.categoriesBox {
+  display: none;
 }
 
 .infoBox {
-  grid-area: info;
-  align-self: end;
+  margin-bottom: 10px;
+  margin-left: 20px;
 }
 
 .pageTitle {
@@ -283,37 +258,114 @@ img {
   color: var(--lightGray);
 }
 
-.categoriesBox {
-  grid-area: cagetories;
+.displayed span {
+  font-weight: 700;
 }
 
-.all {
-  margin-left: 30px;
-}
-
-.mainContent {
-  grid-area: main;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: start;
-}
-
-.category {
-  margin-bottom: 10px;
+.categoriesSelect select {
+  border: none;
+  background-color: white;
+  color: var(--blue);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 5px 3px;
+  outline: none;
+  border-radius: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
   cursor: pointer;
 }
 
-.category:hover,
-.category:focus {
-  color: var(--blue);
+.loadMore {
+  display: inline;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--blue);
 }
 
-.categoryIcon {
-  width: 30px;
-}
+@media (min-width: 500px) {
+  .workshopPage {
+    display: grid;
+    grid-template-columns: 1fr 2em 3fr;
+    grid-template-rows: 50px 2em 1fr 2em 30px;
+    grid-template-areas:
+      "filter     .   info"
+      ".          .      ."
+      "cagetories .   main"
+      ".          .       ."
+      ".          .   load";
+    padding: 20px;
+  }
 
-.currentCategory {
-  color: var(--blue);
+  .categoriesSelect {
+    display: none;
+  }
+
+  .filterBy,
+  .categoriesBox {
+    display: block;
+  }
+
+  .filterBy {
+    grid-area: filter;
+    align-self: end;
+    color: var(--lightGray);
+    font-size: 0.7rem;
+    margin-left: 30px;
+  }
+
+  .loadMore {
+    grid-area: load;
+    font-size: 0.7rem;
+    font-weight: 700;
+    border-bottom: 1px solid var(--blue);
+    align-self: start;
+    justify-self: end;
+    margin-right: 150px;
+    cursor: pointer;
+  }
+
+  .loadMore:hover {
+    color: var(--blue);
+  }
+
+  .infoBox {
+    grid-area: info;
+    align-self: end;
+    margin: 0;
+  }
+
+  .categoriesBox {
+    grid-area: cagetories;
+  }
+
+  .all {
+    margin-left: 30px;
+  }
+
+  .mainContent {
+    grid-area: main;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+  }
+
+  .category {
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+
+  .category:hover,
+  .category:focus {
+    color: var(--blue);
+  }
+
+  .categoryIcon {
+    width: 30px;
+  }
+
+  .currentCategory {
+    color: var(--blue);
+  }
 }
 
 /* ------------------ WORKSHOPS LIST PAGE ------------------ */
@@ -321,6 +373,7 @@ img {
 /* ------------------ WORKSHOP BOX ------------------ */
 
 .workshopBox {
+  display: block;
   height: 320px;
   width: 210px;
   border-radius: 10px;
@@ -393,7 +446,8 @@ img {
 }
 
 .boxInfo p {
-  font-size: 0.5rem;
+  font-size: 0.6rem;
+  font-weight: 700;
   color: var(--darkGray);
   margin-right: 5px;
 }
@@ -421,19 +475,131 @@ img {
 .boxBtn {
   background-color: var(--yellow);
   display: inline-block;
-  padding: 8px 20px;
+  padding: 8px 5px;
   font-size: 0.7rem;
   font-weight: 700;
   border-radius: 3px;
   text-align: center;
   cursor: pointer;
+  margin-bottom: 10px;
 }
 
 .boxBtn:hover {
   background-color: var(--hoverYellow);
 }
 
+@media (max-width: 500px) {
+  .workshopBox {
+    display: none;
+  }
+}
+
 /* ------------------ WORKSHOP BOX ------------------ */
+
+/* ------------------ MOBILE WORKSHOP BOX ------------------ */
+.mobileWorkshopBox {
+  display: flex;
+  background-color: var(--lighterGray);
+  height: 120px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+
+.mobileBoxImgContainer {
+  width: 35%;
+}
+
+.mobileBoxImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mobileBoxContent {
+  position: relative;
+  width: 65%;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.mobileBoxIconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--darkGray);
+  color: white;
+  border-radius: 5px;
+  position: absolute;
+  left: -15px;
+  top: 10px;
+  width: 25px;
+  height: 25px;
+}
+
+.mobileBoxInfo {
+  display: flex;
+}
+
+.mobileTime,
+.mobileDate {
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--darkGray);
+  margin-right: 5px;
+}
+
+.mobileBoxTitle {
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.mobileBoxTitle:hover {
+  color: var(--hoverBlue);
+}
+
+.mobileBuyInfo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mobilePrice {
+  font-weight: 700;
+}
+
+.mobilePrice span {
+  font-size: 0.6rem;
+}
+
+.mobileBoxBtn {
+  background-color: var(--yellow);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.mobileBoxBtn:hover {
+  background-color: var(--hoverYellow);
+}
+
+.mobileBoxBtn ion-icon {
+  font-size: 1.4rem;
+}
+
+@media (min-width: 500px) {
+  .mobileWorkshopBox {
+    display: none;
+  }
+}
+/* ------------------ MOBILE WORKSHOP BOX ------------------ */
 
 /* ------------------ WORKSHOP DETAILS PAGE ------------------ */
 

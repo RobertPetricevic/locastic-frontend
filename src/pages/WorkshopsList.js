@@ -1,20 +1,35 @@
 import React from "react";
 
 import WorkhopBox from "../components/WorkshopBox";
+import MobileWorkshopBox from "../components/MobileWorkshopBox";
 
 import WORKSHOPS from "../data/workshops";
 
 const WorkshopsList = (props) => {
   const displayedWorkshops = WORKSHOPS.map((workshop) => (
-    <WorkhopBox key={workshop.id} workshopInfo={workshop} />
+    <>
+      <MobileWorkshopBox key={workshop.id} workshopInfo={workshop} />
+      <WorkhopBox key={workshop.id} workshopInfo={workshop} />
+    </>
   ));
 
   return (
     <div className="workshopPage">
       <p className="filterBy">Filter by category:</p>
+      <div className="categoriesSelect">
+        <select name="catselect" id="catSelect">
+          <option value="All">All</option>
+          <option value="Design">Design</option>
+          <option value="Frontend">Frontend</option>
+          <option value="Backend">Backend</option>
+          <option value="Marketing">Marketing</option>
+        </select>
+      </div>
       <div className="infoBox">
         <p className="pageTitle">Workshops</p>
-        <p className="displayed">Displayed: 12</p>
+        <p className="displayed">
+          Displayed: <span>12</span>
+        </p>
       </div>
       <div className="categoriesBox">
         <p className="category all">All</p>
@@ -32,7 +47,7 @@ const WorkshopsList = (props) => {
         </p>
       </div>
       <div className="mainContent">{displayedWorkshops}</div>
-      <p className="loadMore">Load More</p>
+      <div className="loadMore">Load More</div>
     </div>
   );
 };

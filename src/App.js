@@ -13,7 +13,7 @@ function App() {
       <WorkshopsList />
       {/* <WorkshopDetails /> */}
       <Footer />
-      <CheckoutModal />
+      {/* <CheckoutModal /> */}
     </div>
   );
 }

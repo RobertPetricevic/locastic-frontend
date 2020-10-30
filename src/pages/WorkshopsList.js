@@ -47,7 +47,7 @@ const WorkshopsList = (props) => {
         </p>
       </div>
       <div className="mainContent">{displayedWorkshops}</div>
-      <div className="loadMore">Load More</div>
+      <p className="loadMore">Load More</p>
     </div>
   );
 };

@@ -9,15 +9,14 @@ const Header = (props) => {
 
   const cartText = (num) => {
     if (num === 0) return "Cart is Empty";
-    else if (num === 1)
-      return `${num} Workshop ${props.header ? "in Cart" : ""}`;
-    else return `${num} Workshops ${props.header ? "in Cart" : ""}`;
+    else if (num === 1) return `${num} Workshop in Cart`;
+    else return `${num} Workshops in Cart`;
   };
 
   return (
     <div className="headerContainer">
       <Logo className="logo" width={50} height={40} />
-      <CartPopupBox />
+      {/* <CartPopupBox /> */}
       <div className="cartContainer">
         <div className="iconContainer">
           <ion-icon

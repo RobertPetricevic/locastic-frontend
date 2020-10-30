@@ -33,14 +33,6 @@ img {
   cursor: pointer;
 }
 
-@media (max-width: 500px) {
-  .headerContainer {
-    padding-right: 20px;
-  }
-}
-
-/* ------------------ HEADER ------------------ */
-
 .cartContainer {
   position: relative;
   display: flex;
@@ -60,6 +52,10 @@ img {
   color: var(--lightGray);
 }
 
+.cartText {
+  margin-left: 10px;
+}
+
 .blueDot {
   position: absolute;
   width: 10px;
@@ -69,6 +65,17 @@ img {
   left: 16px;
   top: 2px;
 }
+
+@media (max-width: 500px) {
+  .cartText {
+    display: none;
+  }
+
+  .headerContainer {
+    padding-right: 20px;
+  }
+}
+/* ------------------ HEADER ------------------ */
 
 /* ------------------ CART POPUP BOX ------------------ */
 
@@ -80,13 +87,22 @@ img {
   right: 0px;
   padding: 0 10px;
   background-color: white;
-  z-index: 1;
+  z-index: 2;
+  border: 3px solid red;
 }
 
 .popupHeader {
   margin: 15px 10px;
   display: flex;
   justify-content: space-between;
+}
+
+.popupIconContainer ion-icon {
+  font-size: 1.5rem;
+}
+
+.popupIconContainer {
+  color: black;
 }
 
 .cartPopupText {
@@ -141,8 +157,10 @@ img {
 
 @media (max-width: 500px) {
   .cartPopupBox {
-    width: 100vw;
+    width: 100%;
+    height: 100%;
     padding: 0 30px;
+    z-index: 2;
   }
 }
 
@@ -253,15 +271,24 @@ img {
 
 /* ------------------ FOOTER ------------------ */
 
-.footerContainer {
+/* .footerContainer {
   position: absolute;
   bottom: 0px;
   width: 100%;
-  height: 60px;
+  min-height: 60px;
   background-color: var(--lighterGray);
   display: flex;
   align-items: center;
   padding-left: 60px;
+} */
+
+.footerContainer {
+  min-height: 60px;
+  background-color: var(--lighterGray);
+  display: flex;
+  align-items: center;
+  padding-left: 60px;
+  margin-top: auto;
 }
 
 .footerText {
@@ -322,6 +349,10 @@ img {
   border-bottom: 1px solid var(--blue);
 }
 
+.loadMore:hover {
+  color: var(--blue);
+}
+
 @media (min-width: 500px) {
   .workshopPage {
     display: grid;
@@ -354,18 +385,14 @@ img {
   }
 
   .loadMore {
+    display: inline;
     grid-area: load;
     font-size: 0.7rem;
     font-weight: 700;
     border-bottom: 1px solid var(--blue);
     align-self: start;
-    justify-self: end;
-    margin-right: 150px;
+    margin: 0 250px 0 auto;
     cursor: pointer;
-  }
-
-  .loadMore:hover {
-    color: var(--blue);
   }
 
   .infoBox {
@@ -416,7 +443,7 @@ img {
   display: block;
   height: 320px;
   width: 210px;
-  border-radius: 10px;
+  border-radius: 5px;
   -webkit-box-shadow: 1px 1px 18px 4px rgba(0, 0, 0, 0.16);
   -moz-box-shadow: 1px 1px 18px 4px rgba(0, 0, 0, 0.16);
   box-shadow: 1px 1px 18px 4px rgba(0, 0, 0, 0.16);
@@ -539,7 +566,8 @@ img {
 /* ------------------ MOBILE WORKSHOP BOX ------------------ */
 .mobileWorkshopBox {
   display: flex;
-  background-color: var(--lighterGray);
+  background-color: white;
+  border: 1px solid var(--lighterGray);
   height: 120px;
   border-radius: 10px;
   overflow: hidden;
@@ -555,6 +583,14 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.mobileBoxImg:hover {
+  opacity: 0.8;
+}
+
+.mobileBoxImgContainer:hover {
+  background-color: black;
 }
 
 .mobileBoxContent {
@@ -644,100 +680,84 @@ img {
 /* ------------------ WORKSHOP DETAILS PAGE ------------------ */
 
 .detailsPage {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  padding-top: 30px;
+  padding-top: 20px;
 }
 
 .topContent {
-  display: flex;
-  height: 800px;
-  padding: 0 10px;
+  padding: 0 20px;
 }
 
 .bottomContent {
   background-color: var(--lighterGray);
-  height: 450px;
 }
 
 .goBack {
-  width: 20%;
+  padding: 10px 0;
 }
 
 .goBackBox {
   display: flex;
-  height: 30px;
-  width: fit-content;
   align-items: center;
   cursor: pointer;
   font-weight: 700;
+}
+
+.goBackBox ion-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-right: 5px;
 }
 
 .goBackBox:hover {
   color: var(--lightGray);
 }
 
-.detailsBox {
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+.detailsImgContainer {
+  height: 200px;
+  border-radius: 10px;
   overflow: hidden;
 }
 
 .detailsImg {
   width: 100%;
   height: 100%;
-  object-fit: fill;
-}
-
-.detailsImgContainer {
-  height: 40%;
+  object-fit: cover;
 }
 
 .detailsContent {
-  display: flex;
-  justify-content: space-between;
-  height: 60%;
-}
-
-.detailsInfo {
-  width: 60%;
-}
-
-.detailsBuy {
-  width: 35%;
+  position: relative;
 }
 
 .detailsSideInfo {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 40%;
-  margin: 10px 0;
+  margin: 10px 0px 10px 30px;
 }
 
 .detailsCategoryIconContainer {
+  position: absolute;
+  right: 20px;
+  top: -25px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--darkGray);
   color: white;
   border-radius: 5px;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
 }
 
 .detailsCategoryIcon {
-  font-size: 0.6rem;
+  font-size: 0.9rem;
 }
 
 .date,
 .time {
-  font-size: 0.6rem;
+  display: block;
+  font-size: 1rem;
   font-weight: 700;
+  margin-right: 10px;
 }
 
 .detailsTitle {
@@ -745,43 +765,47 @@ img {
 }
 
 .detailsDescription {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  margin: 0 30px 20px;
+  color: var(--darkGray);
 }
 
 .detailsSpeaker {
-  font-size: 1.1rem;
-  margin: 10px 0 20px;
+  font-size: 1.4rem;
+  margin: 10px 0 20px 30px;
+  font-weight: 700;
+}
+
+.detailsSpeaker span {
+  font-size: 1rem;
 }
 
 .similarBox {
-  margin-left: 20%;
-}
-
-.similarShops {
-  display: flex;
+  padding: 20px;
 }
 
 .similarTitle {
-  margin: 40px 0 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.cardText,
+.cardTotal {
+  display: none;
 }
 
 .buyCard {
-  max-width: 210px;
-  height: fit-content;
-  padding: 25px 30px;
-  margin-top: 30px;
-  margin-right: 20px;
+  background-color: white;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  -webkit-box-shadow: 1px 1px 34px -9px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 1px 1px 34px -9px rgba(0, 0, 0, 0.75);
-  box-shadow: 1px 1px 34px -9px rgba(0, 0, 0, 0.75);
-}
-
-.cardText {
-  font-size: 0.9rem;
-  font-weight: 700;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 60px;
+  justify-content: space-between;
+  padding: 10px 20px;
 }
 
 .cardPrice {
@@ -792,20 +816,23 @@ img {
 
 .cardPrice span {
   font-size: 0.7rem;
+  font-weight: 700;
 }
 
 .buyInfo {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  width: 65%;
+  justify-content: space-between;
 }
 
 .buyInfo select {
   border: 1px solid var(--blue);
-  padding: 5px 3px;
+  padding: 8px 15px;
   outline: none;
   border-radius: 5px;
-  margin-right: 5px;
-  margin-bottom: 5px;
+  /* margin-right: 5px;
+  margin-bottom: 5px; */
   cursor: pointer;
 }
 
@@ -813,20 +840,184 @@ img {
   font-size: 0.8rem;
   font-weight: 700;
   background-color: var(--yellow);
-  padding: 0.6em 1.3em;
-  border-radius: 10px;
+  padding: 0.8em 2.2em;
+  border-radius: 5px;
   margin-bottom: 5px;
   cursor: pointer;
+  text-align: center;
 }
 
 .cardBtn:hover {
   background-color: var(--hoverYellow);
 }
 
-.cardTotal {
-  font-size: 0.5rem;
-  color: var(--lightGray);
-  text-align: center;
+@media (min-width: 500px) {
+  .detailsPage {
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+  }
+
+  .topContent {
+    display: flex;
+    padding: 0 10px;
+  }
+
+  .goBack {
+    width: 15%;
+  }
+
+  .goBackBox {
+    height: 30px;
+    width: fit-content;
+  }
+
+  .goBackBox ion-icon {
+    font-size: 1.2rem;
+    margin-right: 5px;
+  }
+
+  .goBackBox:hover {
+    color: var(--lightGray);
+  }
+
+  .detailsBox {
+    width: 80%;
+  }
+
+  .detailsImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .detailsImgContainer {
+    height: 250px;
+  }
+
+  .detailsContent {
+    position: static;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .detailsInfo {
+    width: 60%;
+  }
+
+  .detailsBuy {
+    width: 35%;
+  }
+
+  .detailsSideInfo {
+    justify-content: space-between;
+    width: 40%;
+    min-width: fit-content;
+    margin: 10px 0;
+  }
+
+  .detailsCategoryIconContainer {
+    position: static;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+
+  .detailsCategoryIcon {
+    font-size: 0.6rem;
+  }
+
+  .date,
+  .time {
+    display: block;
+    font-size: 0.6rem;
+  }
+
+  .detailsDescription {
+    font-size: 0.7rem;
+    line-height: 1.6;
+    margin: 0;
+    margin-bottom: 30px;
+  }
+
+  .detailsSpeaker {
+    font-size: 1.1rem;
+    margin: 10px 0 20px;
+  }
+
+  .detailsSpeaker span {
+    font-size: 0.8rem;
+  }
+
+  .similarBox {
+    padding: 0px;
+    margin-left: 15%;
+  }
+
+  .similarShops {
+    display: flex;
+  }
+
+  .similarTitle {
+    margin: 40px 0 20px;
+    text-align: left;
+  }
+
+  .buyCard {
+    position: static;
+    z-index: auto;
+    max-width: 250px;
+    height: fit-content;
+    padding: 25px 30px;
+    margin-top: 30px;
+    margin-right: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    -webkit-box-shadow: 1px 1px 34px -9px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 1px 1px 34px -9px rgba(0, 0, 0, 0.75);
+    box-shadow: 1px 1px 34px -9px rgba(0, 0, 0, 0.75);
+  }
+
+  .cardPrice {
+    font-size: 1.8rem;
+  }
+
+  .cardPrice span {
+    font-size: 0.8rem;
+  }
+
+  .cardText {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .buyInfo {
+    display: flex;
+    width: auto;
+    flex-wrap: wrap;
+  }
+
+  .buyInfo select {
+    padding: 8px 10px;
+    margin-bottom: 5px;
+  }
+
+  .cardBtn {
+    background-color: var(--yellow);
+    padding: 0.6em 1.7em;
+  }
+
+  .cardBtn:hover {
+    background-color: var(--hoverYellow);
+  }
+
+  .cardTotal {
+    display: inline;
+    font-size: 0.5rem;
+    color: var(--lightGray);
+    align-self: flex-end;
+  }
 }
 
 /* ------------------ WORKSHOP DETAILS PAGE ------------------ */

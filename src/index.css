@@ -11,14 +11,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #1d1d1b;
   position: relative;
-  min-height: 100vh;
+  margin: 0;
 }
 
-body::after {
+/* body::after {
   content: "";
   display: block;
   height: 60px;
-}
+} */
 
 body::before {
   content: "";

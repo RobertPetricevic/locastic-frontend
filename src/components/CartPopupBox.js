@@ -15,7 +15,7 @@ const CartPopupBox = (props) => {
     <div className="cartPopupBox">
       <div className="popupHeader">
         <div className="cartContainer">
-          <div className="iconContainer">
+          <div className="popupIconContainer">
             <ion-icon
               name={`cart${cartItems.length === 0 ? "-outline" : ""}`}
             ></ion-icon>

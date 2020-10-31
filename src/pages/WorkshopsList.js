@@ -1,13 +1,16 @@
 import React from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import WorkhopBox from "../components/WorkshopBox";
 import MobileWorkshopBox from "../components/MobileWorkshopBox";
 
 import WORKSHOPS from "../data/workshops";
+import { toggleModal } from "../store/actions";
 
 const WorkshopsList = (props) => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   function handleSelectChange(value) {
     history.push(`/${value}`);
@@ -68,7 +71,14 @@ const WorkshopsList = (props) => {
         </Link>
       </div>
       <div className="mainContent">{displayedWorkshops}</div>
-      <p className="loadMore">Load More</p>
+      <p
+        className="loadMore"
+        onClick={() => {
+          dispatch(toggleModal());
+        }}
+      >
+        Load More
+      </p>
     </div>
   );
 };

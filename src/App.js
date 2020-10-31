@@ -1,4 +1,5 @@
 import { Switch, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import "./App.css";
 
@@ -9,6 +10,9 @@ import WorkshopDetails from "./pages/WorkshopDetails";
 import CheckoutModal from "./components/Modal";
 
 function App() {
+  const isModalOn = useSelector((state) => state.isModalOn);
+  const isCheckout = useSelector((state) => state.isCheckout);
+
   return (
     <div className="App">
       <Header />
@@ -26,7 +30,7 @@ function App() {
       </Switch>
 
       <Footer />
-      <CheckoutModal />
+      {isModalOn && <CheckoutModal checkout={isCheckout} />}
     </div>
   );
 }

@@ -1,17 +1,24 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import Input from "./Input";
+import { toggleCheckout, toggleModal } from "../store/actions";
 
 const CheckoutModal = (props) => {
   const history = useHistory();
+  const dispatch = useDispatch();
+
   const num = 0;
   // const num = 1;
 
   const handleBtnClick = (num) => {
-    if (num === 0) {
+    if (props.checkout) {
       history.replace("/");
-      //I VAMO ONDA NESTO PROMINIT DA SE UGASI MODAL
+      dispatch(toggleCheckout());
+    } else {
+      dispatch(toggleModal());
+      dispatch(toggleCheckout());
     }
   };
 
@@ -23,15 +30,17 @@ const CheckoutModal = (props) => {
             num === 1 ? "modalHeader" : "modalHeader modalMobileHeader"
           }
         >
-          {num === 1 && <p className="exitBtn exitBtnFloat">+</p>}
-          <p className="modalTitle">{num === 1 ? "Checkout" : "Thank you!"}</p>
+          {props.checkout && <p className="exitBtn exitBtnFloat">+</p>}
+          <p className="modalTitle">
+            {props.checkout ? "Checkout" : "Thank you!"}
+          </p>
           <p className="modalDescription">
-            {num === 1
+            {props.checkout
               ? "CHECKOUT ipsum dolor sit amet consectetur adipisicing CHECKOUT."
               : "THANKYOU ipsum dolor sit amet consectetur adipisicing THANKYOU."}
           </p>
         </div>
-        {num === 1 && (
+        {props.checkout && (
           <>
             <Input
               label="First Name"
@@ -94,7 +103,7 @@ const CheckoutModal = (props) => {
             num === 1 ? "checkoutBtn" : "checkoutBtn checkoutMobileBtn"
           }
         >
-          {num === 1 ? "Checkout" : "Back to Shop"}
+          {props.checkout ? "Checkout" : "Back to Shop"}
         </div>
       </div>
     </div>

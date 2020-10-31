@@ -7,7 +7,7 @@ import MobileWorkshopBox from "../components/MobileWorkshopBox";
 import WORKSHOPS from "../data/workshops";
 
 const WorkshopsList = (props) => {
-  let history = useHistory();
+  const history = useHistory();
 
   function handleSelectChange(value) {
     history.push(`/${value}`);

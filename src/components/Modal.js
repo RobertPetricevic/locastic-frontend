@@ -1,10 +1,19 @@
 import React from "react";
+import { Link, useHistory } from "react-router-dom";
 
 import Input from "./Input";
 
 const CheckoutModal = (props) => {
-  // const num = 0;
-  const num = 1;
+  const history = useHistory();
+  const num = 0;
+  // const num = 1;
+
+  const handleBtnClick = (num) => {
+    if (num === 0) {
+      history.replace("/");
+      //I VAMO ONDA NESTO PROMINIT DA SE UGASI MODAL
+    }
+  };
 
   return (
     <div className="modalContainer">
@@ -77,13 +86,16 @@ const CheckoutModal = (props) => {
             />
           </>
         )}
-        <p
+        <div
+          onClick={() => {
+            handleBtnClick(num);
+          }}
           className={
             num === 1 ? "checkoutBtn" : "checkoutBtn checkoutMobileBtn"
           }
         >
           {num === 1 ? "Checkout" : "Back to Shop"}
-        </p>
+        </div>
       </div>
     </div>
   );

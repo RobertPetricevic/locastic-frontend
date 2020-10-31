@@ -1,8 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import moment from "moment";
 
+import { addToCart } from "../store/actions";
+
 const WorkshopBox = ({ workshopInfo }) => {
+  const dispatch = useDispatch();
+
   const categoryIcon = (catName) => {
     switch (catName) {
       case "design":
@@ -50,7 +55,14 @@ const WorkshopBox = ({ workshopInfo }) => {
           <p className="price">
             {workshopInfo.price} <span>EUR</span>
           </p>
-          <p className="boxBtn">Add to cart</p>
+          <p
+            className="boxBtn"
+            onClick={() => {
+              dispatch(addToCart(workshopInfo, 1));
+            }}
+          >
+            Add to cart
+          </p>
         </div>
       </div>
     </div>

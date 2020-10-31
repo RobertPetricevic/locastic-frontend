@@ -1,24 +1,52 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-const WorkshopCartBox = (props) => {
+import { addToCartSelect, removeFromCart } from "../store/actions";
+
+const WorkshopCartBox = ({ workshopInfo }) => {
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const currentItem = cartItems.find((item) => item.id === workshopInfo.id);
+
+  const [selectValue, setSelectValue] = useState(1);
+
+  const handleChange = (e) => {
+    setSelectValue(e.target.value);
+    dispatch(addToCartSelect(workshopInfo, parseInt(e.target.value)));
+  };
+
+  useEffect(() => {
+    setSelectValue(currentItem.quantity);
+  }, [currentItem.quantity]);
+
   return (
     <div className="workshopCartBox">
       <div className="workshopCartBoxImgContainer">
         <img
           className="workshopCartBoxImg"
-          src="https://secure.meetupstatic.com/photos/event/2/d/8/e/highres_482651662.jpeg"
+          src={workshopInfo.imageUrl}
           alt="img"
         />
       </div>
       <div className="workShopCartContent">
         <div className="workShopCartInfo">
-          <p className="workShopCartTitle">Interaction Dsng Workshop</p>
-          <p className="workShopCartTrash">
+          <p className="workShopCartTitle">{workshopInfo.title}</p>
+          <p
+            className="workShopCartTrash"
+            onClick={() => {
+              dispatch(removeFromCart(workshopInfo.id));
+            }}
+          >
             <ion-icon name="trash-outline"></ion-icon>
           </p>
         </div>
         <div className="workShopCartBuy">
-          <select name="num" id="num">
+          <select
+            name="num"
+            id="num"
+            value={selectValue}
+            onChange={handleChange}
+          >
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -27,9 +55,14 @@ const WorkshopCartBox = (props) => {
             <option value="6">6</option>
             <option value="7">7</option>
             <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
           </select>
           <p className="workShopCartPrice">
-            450,00 <span>EUR</span>
+            {workshopInfo.price} <span>EUR</span>
           </p>
         </div>
       </div>

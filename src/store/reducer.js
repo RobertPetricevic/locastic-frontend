@@ -4,16 +4,24 @@ import {
   OPEN_MODAL,
   CLOSE_MODAL,
   TOGGLE_CHECKOUT,
+  ADD_TO_CART,
+  ADD_TO_CART_SELECT,
+  REMOVE_FROM_CART,
 } from "./actions";
 
 const initialState = {
   isModalOn: false,
   isCheckout: true,
   isCartOn: false,
-  cartItems: [],
+  cart: {
+    cartItems: [],
+    cartTotal: 0,
+  },
 };
 
 const appReducer = (state = initialState, action) => {
+  let newProduct;
+  let changedCartItems;
   switch (action.type) {
     case OPEN_MODAL:
       return {
@@ -39,6 +47,67 @@ const appReducer = (state = initialState, action) => {
       return {
         ...state,
         isCartOn: false,
+      };
+    case ADD_TO_CART:
+      newProduct = action.product;
+
+      if (state.cart.cartItems.find((item) => item.id === newProduct.id)) {
+        changedCartItems = state.cart.cartItems.map((item) => {
+          if (item.id === newProduct.id) {
+            return {
+              ...item,
+              quantity: item.quantity + newProduct.quantity,
+            };
+          }
+          return item;
+        });
+      } else {
+        changedCartItems = state.cart.cartItems.concat(newProduct);
+      }
+      return {
+        ...state,
+        cart: {
+          cartItems: changedCartItems,
+          cartTotal:
+            state.cart.cartTotal + newProduct.price * newProduct.quantity,
+        },
+      };
+
+    case ADD_TO_CART_SELECT:
+      newProduct = action.product;
+      let quantityDifference;
+      changedCartItems = state.cart.cartItems.map((item) => {
+        if (item.id === newProduct.id) {
+          quantityDifference = newProduct.quantity - item.quantity;
+          return {
+            ...item,
+            quantity: newProduct.quantity,
+          };
+        }
+        return item;
+      });
+      return {
+        ...state,
+        cart: {
+          cartItems: changedCartItems,
+          cartTotal:
+            state.cart.cartTotal + newProduct.price * quantityDifference,
+        },
+      };
+    case REMOVE_FROM_CART:
+      const itemToRemove = state.cart.cartItems.find(
+        (item) => item.id === action.productId
+      );
+      const minusTotal = itemToRemove.price * itemToRemove.quantity;
+
+      return {
+        ...state,
+        cart: {
+          cartItems: state.cart.cartItems.filter(
+            (item) => item.id !== action.productId
+          ),
+          cartTotal: state.cart.cartTotal - minusTotal,
+        },
       };
     default:
       return state;

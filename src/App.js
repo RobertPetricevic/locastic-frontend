@@ -12,6 +12,8 @@ import CheckoutModal from "./components/Modal";
 function App() {
   const isModalOn = useSelector((state) => state.isModalOn);
   const isCheckout = useSelector((state) => state.isCheckout);
+  const cart = useSelector((state) => state.cart);
+  // console.log("cart:", cart);
 
   return (
     <div className="App">

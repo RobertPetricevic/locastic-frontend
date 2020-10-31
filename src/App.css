@@ -84,6 +84,8 @@ a {
 
 /* ------------------ CART POPUP BOX ------------------ */
 
+/* KAKO NE PREKRIJE ONO DOLE ZA KUPIT NA MALIM EKRANIMAAAAA */
+
 .cartPopupBox {
   position: fixed;
   width: 250px;
@@ -92,8 +94,10 @@ a {
   right: 0px;
   padding: 0 10px;
   background-color: white;
-  z-index: 2;
+  z-index: 4;
 }
+
+/* KAKO NE PREKRIJE ONO DOLE ZA KUPIT NA MALIM EKRANIMAAAAA */
 
 .popupHeader {
   margin: 15px 10px;

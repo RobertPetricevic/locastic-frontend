@@ -1,12 +1,12 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import WorkshopCartBox from "./WorkshopCartBox";
-import { closeCart } from "../store/actions";
-import { openModal } from "../store/actions";
+import { closeCart, openModal } from "../store/actions";
 
 const CartPopupBox = (props) => {
-  const cartItems = [];
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const cartTotal = useSelector((state) => state.cart.cartTotal);
   const dispatch = useDispatch();
 
   const cartText = (num) => {
@@ -14,6 +14,10 @@ const CartPopupBox = (props) => {
     else if (num === 1) return `${num} Workshop`;
     else return `${num} Workshops`;
   };
+
+  const displayedCartWorkshops = cartItems.map((workshop) => (
+    <WorkshopCartBox key={workshop.id} workshopInfo={workshop} />
+  ));
 
   return (
     <div className="cartPopupBox">
@@ -36,15 +40,11 @@ const CartPopupBox = (props) => {
           +
         </p>
       </div>
-      <div className="popupContent">
-        <WorkshopCartBox />
-        <WorkshopCartBox />
-        <WorkshopCartBox />
-      </div>
+      <div className="popupContent">{displayedCartWorkshops}</div>
       <div className="popupBuyBox">
         <p className="popupTotal">SUBTOTAL</p>
         <p className="popupPrice">
-          400,00 <span>EUR</span>
+          {cartTotal} <span>EUR</span>
         </p>
         <p
           className="popupBtn"

@@ -27,7 +27,10 @@ export const toggleCheckout = () => {
 };
 
 export const addToCart = (item, quantity) => {
-  return { type: ADD_TO_CART, product: { ...item, quantity } };
+  return (dispatch) => {
+    dispatch(openCart());
+    dispatch({ type: ADD_TO_CART, product: { ...item, quantity } });
+  };
 };
 
 export const addToCartSelect = (item, quantity) => {

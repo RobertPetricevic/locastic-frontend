@@ -1,4 +1,9 @@
-import { OPEN_CART, TOGGLE_MODAL, TOGGLE_CHECKOUT } from "./actions";
+import {
+  OPEN_CART,
+  CLOSE_CART,
+  TOGGLE_MODAL,
+  TOGGLE_CHECKOUT,
+} from "./actions";
 
 const initialState = {
   isModalOn: false,
@@ -18,6 +23,16 @@ const appReducer = (state = initialState, action) => {
       return {
         ...state,
         isCheckout: !state.isCheckout,
+      };
+    case OPEN_CART:
+      return {
+        ...state,
+        isCartOn: true,
+      };
+    case CLOSE_CART:
+      return {
+        ...state,
+        isCartOn: false,
       };
     default:
       return state;

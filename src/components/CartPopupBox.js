@@ -1,9 +1,12 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 
 import WorkshopCartBox from "./WorkshopCartBox";
+import { closeCart } from "../store/actions";
 
 const CartPopupBox = (props) => {
   const cartItems = [];
+  const dispatch = useDispatch();
 
   const cartText = (num) => {
     if (num === 0) return "Cart is Empty";
@@ -23,7 +26,14 @@ const CartPopupBox = (props) => {
           <p className="cartPopupText">{cartText(cartItems.length)}</p>
           {cartItems.length !== 0 && <div className="blueDot"></div>}
         </div>
-        <p className="exitBtn">+</p>
+        <p
+          className="exitBtn"
+          onClick={() => {
+            dispatch(closeCart());
+          }}
+        >
+          +
+        </p>
       </div>
       <div className="popupContent">
         <WorkshopCartBox />

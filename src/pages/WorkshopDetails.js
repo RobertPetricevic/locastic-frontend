@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import moment from "moment";
 
 import WorkhopBox from "../components/WorkshopBox";
@@ -26,10 +27,12 @@ const WorkshopDetails = (props) => {
     <div className="detailsPage">
       <div className="topContent">
         <div className="goBack">
-          <div className="goBackBox">
-            <ion-icon name="arrow-back" />
-            <p>Back</p>
-          </div>
+          <Link to="/">
+            <div className="goBackBox">
+              <ion-icon name="arrow-back" />
+              <p>Back</p>
+            </div>
+          </Link>
         </div>
         <div className="detailsBox">
           <div className="detailsImgContainer">

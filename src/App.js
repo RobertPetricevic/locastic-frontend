@@ -1,3 +1,5 @@
+import { Switch, Route } from "react-router-dom";
+
 import "./App.css";
 
 import Header from "./components/Header";
@@ -10,10 +12,21 @@ function App() {
   return (
     <div className="App">
       <Header />
-      {/* <WorkshopsList /> */}
-      <WorkshopDetails />
+
+      <Switch>
+        <Route exact path="/">
+          <WorkshopsList />
+        </Route>
+        <Route exact path="/:cat">
+          <WorkshopsList />
+        </Route>
+        <Route>
+          <WorkshopDetails path="/details/:shopID" />
+        </Route>
+      </Switch>
+
       <Footer />
-      <CheckoutModal />
+      {/* <CheckoutModal /> */}
     </div>
   );
 }

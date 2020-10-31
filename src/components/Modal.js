@@ -4,7 +4,7 @@ import Input from "./Input";
 
 const CheckoutModal = (props) => {
   // const num = 0;
-  const num = 0;
+  const num = 1;
 
   return (
     <div className="modalContainer">

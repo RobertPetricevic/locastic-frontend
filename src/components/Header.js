@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { ReactComponent as Logo } from "../assets/tinel-logo.svg";
 
@@ -15,7 +16,9 @@ const Header = (props) => {
 
   return (
     <div className="headerContainer">
-      <Logo className="logo" width={50} height={40} />
+      <Link to="/">
+        <Logo className="logo" width={50} height={40} />
+      </Link>
       {/* <CartPopupBox /> */}
       <div className="cartContainer">
         <div className="iconContainer">

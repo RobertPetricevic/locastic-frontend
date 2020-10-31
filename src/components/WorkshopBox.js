@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import moment from "moment";
 
 const WorkshopBox = ({ workshopInfo }) => {
@@ -19,9 +20,11 @@ const WorkshopBox = ({ workshopInfo }) => {
 
   return (
     <div className="workshopBox">
-      <div className="boxImgContainer">
-        <img className="boxImg" src={workshopInfo.imageUrl} alt="img" />
-      </div>
+      <Link to={`/details/${workshopInfo.id}`}>
+        <div className="boxImgContainer">
+          <img className="boxImg" src={workshopInfo.imageUrl} alt="img" />
+        </div>
+      </Link>
       <div className="boxContent">
         <div className="boxContentContainer">
           <div className="boxIconContainer">
@@ -41,7 +44,9 @@ const WorkshopBox = ({ workshopInfo }) => {
               {moment(workshopInfo.date).format("HH:MM")}
             </p>
           </div>
-          <p className="boxTitle">{workshopInfo.title}</p>
+          <Link to={`/details/${workshopInfo.id}`}>
+            <p className="boxTitle">{workshopInfo.title}</p>
+          </Link>
           <p className="price">
             {workshopInfo.price} <span>EUR</span>
           </p>

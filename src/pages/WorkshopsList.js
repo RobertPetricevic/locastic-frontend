@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 
 import WorkhopBox from "../components/WorkshopBox";
 import MobileWorkshopBox from "../components/MobileWorkshopBox";
@@ -14,10 +14,10 @@ const WorkshopsList = (props) => {
   }
 
   const displayedWorkshops = WORKSHOPS.map((workshop) => (
-    <>
-      <MobileWorkshopBox key={`m${workshop.id}`} workshopInfo={workshop} />
-      <WorkhopBox key={workshop.id} workshopInfo={workshop} />
-    </>
+    <React.Fragment key={workshop.id}>
+      <MobileWorkshopBox workshopInfo={workshop} />
+      <WorkhopBox workshopInfo={workshop} />
+    </React.Fragment>
   ));
 
   return (

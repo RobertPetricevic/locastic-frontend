@@ -20,8 +20,8 @@ function App() {
         <Route exact path="/:cat">
           <WorkshopsList />
         </Route>
-        <Route>
-          <WorkshopDetails path="/details/:shopID" />
+        <Route path="/details/:id">
+          <WorkshopDetails />
         </Route>
       </Switch>
 

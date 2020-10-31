@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import moment from "moment";
 
 import WorkhopBox from "../components/WorkshopBox";
@@ -9,18 +9,19 @@ import USERS from "../data/users";
 import MobileWorkshopBox from "../components/MobileWorkshopBox";
 
 const WorkshopDetails = (props) => {
-  const workshopInfo = WORKSHOPS[1];
-
-  const userName = USERS.find((user) => user.id === workshopInfo.id).name;
+  const { id } = useParams();
+  const shopId = parseInt(id);
+  const workshopInfo = WORKSHOPS.find((workshop) => workshop.id === shopId);
+  const userName = USERS.find((user) => user.id === shopId).name;
 
   const threeWorkShops = WORKSHOPS.slice(0, 3);
   // const threeWorkShops = [];
 
   const displayedSimilarWorkshops = threeWorkShops.map((workshop) => (
-    <>
-      <MobileWorkshopBox key={`m${workshop.id}`} workshopInfo={workshop} />
-      <WorkhopBox key={workshop.id} workshopInfo={workshop} />
-    </>
+    <React.Fragment key={workshop.id}>
+      <MobileWorkshopBox workshopInfo={workshop} />
+      <WorkhopBox workshopInfo={workshop} />
+    </React.Fragment>
   ));
 
   return (
@@ -56,7 +57,8 @@ const WorkshopDetails = (props) => {
               <div className="detailsMainInfo">
                 <h1 className="detailsTitle">{workshopInfo.title}</h1>
                 <h2 className="detailsSpeaker">
-                  <span>WITH</span> {userName}
+                  <span>WITH </span>
+                  {userName}
                 </h2>
                 <p className="detailsDescription">{workshopInfo.desc}</p>
               </div>

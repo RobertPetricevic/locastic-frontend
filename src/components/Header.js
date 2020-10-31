@@ -8,9 +8,9 @@ import CartPopupBox from "./CartPopupBox";
 import { openCart } from "../store/actions";
 
 const Header = (props) => {
-  const cartItems = [];
   const dispatch = useDispatch();
   const isCartOn = useSelector((state) => state.isCartOn);
+  const cartItems = useSelector((state) => state.cart.cartItems);
 
   const cartText = (num) => {
     if (num === 0) return "Cart is Empty";

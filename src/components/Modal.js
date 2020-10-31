@@ -1,9 +1,9 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import Input from "./Input";
-import { toggleCheckout, toggleModal } from "../store/actions";
+import { toggleCheckout, closeModal, closeCart } from "../store/actions";
 
 const CheckoutModal = (props) => {
   const history = useHistory();
@@ -13,12 +13,13 @@ const CheckoutModal = (props) => {
   // const num = 1;
 
   const handleBtnClick = (num) => {
-    if (props.checkout) {
+    if (!props.checkout) {
       history.replace("/");
       dispatch(toggleCheckout());
+      dispatch(closeModal());
     } else {
-      dispatch(toggleModal());
       dispatch(toggleCheckout());
+      dispatch(closeCart());
     }
   };
 
@@ -30,7 +31,16 @@ const CheckoutModal = (props) => {
             num === 1 ? "modalHeader" : "modalHeader modalMobileHeader"
           }
         >
-          {props.checkout && <p className="exitBtn exitBtnFloat">+</p>}
+          {props.checkout && (
+            <p
+              className="exitBtn exitBtnFloat"
+              onClick={() => {
+                dispatch(closeModal());
+              }}
+            >
+              +
+            </p>
+          )}
           <p className="modalTitle">
             {props.checkout ? "Checkout" : "Thank you!"}
           </p>

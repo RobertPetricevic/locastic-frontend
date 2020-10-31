@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 
 import WorkshopCartBox from "./WorkshopCartBox";
 import { closeCart } from "../store/actions";
+import { openModal } from "../store/actions";
 
 const CartPopupBox = (props) => {
   const cartItems = [];
@@ -45,7 +46,14 @@ const CartPopupBox = (props) => {
         <p className="popupPrice">
           400,00 <span>EUR</span>
         </p>
-        <p className="popupBtn">Checkout</p>
+        <p
+          className="popupBtn"
+          onClick={() => {
+            dispatch(openModal());
+          }}
+        >
+          Checkout
+        </p>
       </div>
     </div>
   );

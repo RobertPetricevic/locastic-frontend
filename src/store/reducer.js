@@ -1,7 +1,8 @@
 import {
   OPEN_CART,
   CLOSE_CART,
-  TOGGLE_MODAL,
+  OPEN_MODAL,
+  CLOSE_MODAL,
   TOGGLE_CHECKOUT,
 } from "./actions";
 
@@ -14,10 +15,15 @@ const initialState = {
 
 const appReducer = (state = initialState, action) => {
   switch (action.type) {
-    case TOGGLE_MODAL:
+    case OPEN_MODAL:
       return {
         ...state,
-        isModalOn: !state.isModalOn,
+        isModalOn: true,
+      };
+    case CLOSE_MODAL:
+      return {
+        ...state,
+        isModalOn: false,
       };
     case TOGGLE_CHECKOUT:
       return {

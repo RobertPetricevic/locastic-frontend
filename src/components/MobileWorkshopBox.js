@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import moment from "moment";
 
 const MobileWorkshopBox = ({ workshopInfo }) => {
@@ -20,7 +21,9 @@ const MobileWorkshopBox = ({ workshopInfo }) => {
   return (
     <div className="mobileWorkshopBox">
       <div className="mobileBoxImgContainer">
-        <img className="mobileBoxImg" src={workshopInfo.imageUrl} alt="img" />
+        <Link to={`/details/${workshopInfo.id}`}>
+          <img className="mobileBoxImg" src={workshopInfo.imageUrl} alt="img" />
+        </Link>
       </div>
       <div className="mobileBoxContent">
         <div className="mobileBoxIconContainer">
@@ -38,7 +41,9 @@ const MobileWorkshopBox = ({ workshopInfo }) => {
             {moment(workshopInfo.date).format("HH:MM")}
           </p>
         </div>
-        <p className="mobileBoxTitle">{workshopInfo.title}</p>
+        <Link to={`/details/${workshopInfo.id}`}>
+          <p className="mobileBoxTitle">{workshopInfo.title}</p>
+        </Link>
         <div className="mobileBuyInfo">
           <p className="mobilePrice">
             {workshopInfo.price} <span>EUR</span>

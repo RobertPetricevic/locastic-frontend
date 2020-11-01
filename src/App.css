@@ -332,6 +332,7 @@ a {
   padding: 20px;
   display: flex;
   flex-direction: column;
+  padding-top: 80px;
 }
 
 .filterBy,
@@ -685,7 +686,7 @@ a {
 /* ------------------ WORKSHOP DETAILS PAGE ------------------ */
 
 .detailsPage {
-  padding-top: 20px;
+  padding-top: 80px;
 }
 
 .topContent {

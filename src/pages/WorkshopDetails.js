@@ -3,10 +3,10 @@ import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import moment from "moment";
 
-import WORKSHOPS from "../data/workshops";
-import USERS from "../data/users";
 import WorkshopBox from "../components/WorkshopBox";
 import { addToCart } from "../store/actions";
+
+import WORKSHOPS from "../data/workshops";
 
 const WorkshopDetails = (props) => {
   const [currentWorkshop, setCurrentWorkshop] = useState([]);
@@ -18,7 +18,7 @@ const WorkshopDetails = (props) => {
   const { id } = useParams();
   const shopId = parseInt(id);
 
-  const threeWorkShops = [];
+  const threeWorkShops = WORKSHOPS.slice(0, 3);
 
   const handleChange = (e) => {
     setSelectValue(e.target.value);

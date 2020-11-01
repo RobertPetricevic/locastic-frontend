@@ -3,6 +3,10 @@
   margin: 0;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   font-family: "Livvic", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
     "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -10,11 +14,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #1d1d1b;
-  position: relative;
-  margin: 0;
+  height: 100%;
 }
 
-body::before {
+#root {
+  height: 100%;
+}
+
+#root::before {
   content: "";
   display: block;
   height: 60px;

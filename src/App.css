@@ -9,6 +9,19 @@
   --red: #ff392e;
 }
 
+.App {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  position: relative;
+}
+
+/* .App::before {
+  content: "";
+  display: block;
+  height: 60px;
+} */
+
 img {
   max-width: 100%;
   display: block;
@@ -88,6 +101,23 @@ a {
   }
 }
 /* ------------------ HEADER ------------------ */
+
+/* ------------------ FOOTER ------------------ */
+
+.footerContainer {
+  height: 60px;
+  background-color: var(--lighterGray);
+  display: flex;
+  align-items: center;
+  padding-left: 60px;
+  grid-row: 2/3;
+}
+
+.footerText {
+  color: var(--lightGray);
+}
+
+/* ------------------ FOOTER ------------------ */
 
 /* ------------------ CART POPUP BOX ------------------ */
 
@@ -295,23 +325,6 @@ a {
 }
 
 /* ------------------ WORKSHOP CART BOX ------------------ */
-
-/* ------------------ FOOTER ------------------ */
-
-.footerContainer {
-  min-height: 60px;
-  background-color: var(--lighterGray);
-  display: flex;
-  align-items: center;
-  padding-left: 60px;
-  margin-top: auto;
-}
-
-.footerText {
-  color: var(--lightGray);
-}
-
-/* ------------------ FOOTER ------------------ */
 
 /* ------------------ WORKSHOPS LIST PAGE ------------------ */
 

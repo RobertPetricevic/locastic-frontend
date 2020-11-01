@@ -8,17 +8,20 @@ const WorkshopsList = (props) => {
   const { cat } = useParams();
 
   const [data, setData] = useState([]);
-  console.log("data:", data);
+  const [page, setPage] = useState(1);
+  // console.log("data:", data);
 
   const handleSelectChange = (value) => {
     history.push(`/${value}`);
   };
 
   const fetchData = useCallback(async () => {
-    const response = await fetch("http://localhost:3000/workshops");
+    const url = `http://localhost:3000/workshops?_page=${page}&_limit=9`;
+
+    const response = await fetch(url);
     const resData = await response.json();
-    setData(resData);
-  }, [setData]);
+    setData((prevData) => [...prevData, ...resData]);
+  }, [setData, page]);
 
   useEffect(() => {
     fetchData();
@@ -76,7 +79,14 @@ const WorkshopsList = (props) => {
         </Link>
       </div>
       <div className="mainContent">{displayedWorkshops}</div>
-      <p className="loadMore">Load More</p>
+      <p
+        className="loadMore"
+        onClick={() => {
+          setPage((prevNum) => prevNum + 1);
+        }}
+      >
+        Load More
+      </p>
     </div>
   );
 };

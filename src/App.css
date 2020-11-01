@@ -19,6 +19,13 @@ a {
   color: #000;
 }
 
+.spinnerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
 /* ------------------ HEADER ------------------ */
 
 .headerContainer {

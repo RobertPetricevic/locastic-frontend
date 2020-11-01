@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Link, useHistory, useParams, useLocation } from "react-router-dom";
 
+import { BeatLoader } from "react-spinners";
+
 import WorkshopBox from "../components/WorkshopBox";
 
 const WorkshopsList = (props) => {
@@ -10,6 +12,7 @@ const WorkshopsList = (props) => {
 
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSelectChange = (value) => {
     history.push(`/${value}`);
@@ -20,6 +23,7 @@ const WorkshopsList = (props) => {
       cat ? `category=${cat}` : ""
     }&_sort=date&_order=dsc&_page=${page}&_limit=9`;
 
+    setIsLoading(true);
     const response = await fetch(url);
     const resData = await response.json();
     if (page !== 1) {
@@ -27,6 +31,7 @@ const WorkshopsList = (props) => {
     } else {
       setData(resData);
     }
+    setIsLoading(false);
   }, [setData, page, cat]);
 
   useEffect(() => {
@@ -120,7 +125,15 @@ const WorkshopsList = (props) => {
           </p>
         </Link>
       </div>
-      <div className="mainContent">{displayedWorkshops}</div>
+      <div className="mainContent">
+        {isLoading ? (
+          <div className="spinnerContainer">
+            <BeatLoader />
+          </div>
+        ) : (
+          displayedWorkshops
+        )}
+      </div>
       <p
         className="loadMore"
         onClick={() => {

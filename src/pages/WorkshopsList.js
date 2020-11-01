@@ -13,6 +13,7 @@ const WorkshopsList = (props) => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  const [isReadMore, setIsReadMore] = useState(false);
 
   const handleSelectChange = (value) => {
     history.push(`/${value}`);
@@ -22,7 +23,9 @@ const WorkshopsList = (props) => {
     const url = `http://localhost:3000/workshops?${
       cat ? `category=${cat}` : ""
     }&_sort=date&_order=dsc&_page=${page}&_limit=9`;
-
+    if (page !== 1) {
+      setIsReadMore(true);
+    }
     setIsLoading(true);
     const response = await fetch(url);
     const resData = await response.json();
@@ -32,6 +35,7 @@ const WorkshopsList = (props) => {
       setData(resData);
     }
     setIsLoading(false);
+    setIsReadMore(false);
   }, [setData, page, cat]);
 
   useEffect(() => {
@@ -134,7 +138,7 @@ const WorkshopsList = (props) => {
         </Link>
       </div>
       <div className="mainContent">
-        {isLoading ? (
+        {isLoading && !isReadMore ? (
           <div className="spinnerContainer">
             <BeatLoader />
           </div>
@@ -142,14 +146,20 @@ const WorkshopsList = (props) => {
           displayedWorkshops
         )}
       </div>
-      <p
-        className="loadMore"
+      <div
+        className={`loadMore ${isReadMore && "loadSpinner"}`}
         onClick={() => {
           setPage((prevNum) => prevNum + 1);
         }}
       >
-        Load More
-      </p>
+        {isReadMore ? (
+          <div className="spinnerContainer">
+            <BeatLoader />
+          </div>
+        ) : (
+          "Load More"
+        )}
+      </div>
     </div>
   );
 };

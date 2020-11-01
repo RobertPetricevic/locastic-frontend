@@ -425,6 +425,10 @@ a {
     cursor: pointer;
   }
 
+  .loadSpinner {
+    border-bottom: none;
+  }
+
   .infoBox {
     grid-area: info;
     align-self: end;

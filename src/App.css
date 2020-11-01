@@ -393,7 +393,7 @@ a {
       "cagetories .   main"
       ".          .       ."
       ".          .   load";
-    padding: 20px;
+    padding-top: 60px;
   }
 
   .categoriesSelect {
@@ -860,7 +860,7 @@ a {
   .detailsPage {
     display: flex;
     flex-direction: column;
-    padding-top: 30px;
+    padding-top: 90px;
   }
 
   .topContent {

@@ -21,11 +21,11 @@ body {
   height: 100%;
 }
 
-#root::before {
+/* #root::before {
   content: "";
   display: block;
   height: 60px;
-}
+} */
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

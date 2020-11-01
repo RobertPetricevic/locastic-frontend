@@ -50,7 +50,7 @@ const WorkshopsList = (props) => {
       <div className="infoBox">
         <p className="pageTitle">Workshops</p>
         <p className="displayed">
-          Displayed: <span>12</span>
+          Displayed: <span>{data.length}</span>
         </p>
       </div>
       <div className="categoriesBox">

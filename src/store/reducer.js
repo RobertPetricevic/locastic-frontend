@@ -7,6 +7,7 @@ import {
   ADD_TO_CART,
   ADD_TO_CART_SELECT,
   REMOVE_FROM_CART,
+  EMPTY_CART,
 } from "./actions";
 
 const initialState = {
@@ -107,6 +108,14 @@ const appReducer = (state = initialState, action) => {
             (item) => item.id !== action.productId
           ),
           cartTotal: state.cart.cartTotal - minusTotal,
+        },
+      };
+    case EMPTY_CART:
+      return {
+        ...state,
+        cart: {
+          cartItems: [],
+          cartTotal: 0,
         },
       };
     default:

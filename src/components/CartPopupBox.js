@@ -47,9 +47,9 @@ const CartPopupBox = (props) => {
           {cartTotal} <span>EUR</span>
         </p>
         <p
-          className="popupBtn"
+          className={`popupBtn ${cartItems.length === 0 ? "disableBtn" : ""}`}
           onClick={() => {
-            dispatch(openModal());
+            if (cartItems.length !== 0) dispatch(openModal());
           }}
         >
           Checkout

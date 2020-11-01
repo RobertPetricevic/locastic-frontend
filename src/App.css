@@ -170,6 +170,9 @@ a {
     padding: 0 30px;
     z-index: 2;
   }
+  .popupBtn:hover {
+    background-color: var(--blue);
+  }
 }
 
 /* ------------------ CART POPUP BOX ------------------ */
@@ -1123,19 +1126,24 @@ a {
   width: 100%;
   padding: 5px 10px;
   border: none;
-  border-bottom: 1px solid var(--lightGray);
+  border-bottom: 1px solid var(--blue);
   outline: none;
   font-size: 0.8rem;
 }
 
-.inputField:focus {
-  background-color: var(--lighterGray);
-  border-bottom: 1px solid var(--blue);
+.inputFieldVaild,
+.inputFieldVaild:focus {
+  border-bottom: 1px solid green;
+}
+
+.inputFieldInvaild,
+.inputFieldInvaild:focus {
+  border-bottom: 1px solid var(--red);
 }
 
 .inputContainer select {
   border: none;
-  border-bottom: 1px solid var(--lightGray);
+  border-bottom: 1px solid green;
   width: 100%;
   outline: none;
   cursor: pointer;
@@ -1183,18 +1191,13 @@ a {
   .inputContainer {
     margin-bottom: 25px;
   }
-  .modalMobileHeader {
-    margin: auto 0px;
-  }
+
   .checkoutBtn {
     width: 100%;
     text-align: center;
     padding: 1.4em;
   }
-  .checkoutMobileBtn {
-    margin-top: auto;
-    margin-bottom: 80px;
-  }
+
   .modalTitle {
     font-size: 1.9rem;
   }
@@ -1202,6 +1205,13 @@ a {
   .modalDescription {
     font-size: 0.8rem;
   }
+  .checkoutBtn:hover {
+    background-color: var(--yellow);
+  }
 }
 
 /* ------------------ MODAL ------------------ */
+
+.disableBtn {
+  cursor: not-allowed;
+}

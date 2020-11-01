@@ -6,6 +6,7 @@ export const TOGGLE_CHECKOUT = "TOGGLE_CHECKOUT";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const ADD_TO_CART_SELECT = "ADD_TO_CART_SELECT";
+export const EMPTY_CART = "EMPTY_CART";
 
 export const openCart = () => {
   return { type: OPEN_CART };
@@ -39,4 +40,8 @@ export const addToCartSelect = (item, quantity) => {
 
 export const removeFromCart = (productId) => {
   return { type: REMOVE_FROM_CART, productId };
+};
+
+export const emptyCart = () => {
+  return { type: EMPTY_CART };
 };

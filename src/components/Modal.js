@@ -1,18 +1,82 @@
-import React from "react";
+import React, { useReducer, useCallback } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Input from "./Input";
-import { toggleCheckout, closeModal, closeCart } from "../store/actions";
+import {
+  toggleCheckout,
+  closeModal,
+  closeCart,
+  emptyCart,
+} from "../store/actions";
+
+const FORM_INPUT_UPDATE = "FORM_INPUT_UPDATE";
+
+const formReducer = (state, action) => {
+  if (action.type === FORM_INPUT_UPDATE) {
+    const updatedValues = {
+      ...state.inputValues,
+      [action.input]: action.value,
+    };
+    const updatedValidities = {
+      ...state.inputValidities,
+      [action.input]: action.isValid,
+    };
+    let updatedFormIsValid = true;
+    for (const key in updatedValidities) {
+      updatedFormIsValid = updatedFormIsValid && updatedValidities[key];
+    }
+    return {
+      formIsValid: updatedFormIsValid,
+      inputValidities: updatedValidities,
+      inputValues: updatedValues,
+    };
+  }
+  return state;
+};
 
 const CheckoutModal = (props) => {
+  const isModalOn = useSelector((state) => state.isModalOn);
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const num = 0;
-  // const num = 1;
+  const [formState, dispatchFormState] = useReducer(formReducer, {
+    inputValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      date: "",
+      address: "",
+      code: "",
+      check: "",
+    },
+    inputValidities: {
+      firstName: false,
+      lastName: false,
+      email: false,
+      date: false,
+      address: false,
+      code: false,
+      check: false,
+    },
+    formIsValid: false,
+  });
 
-  const handleBtnClick = (num) => {
+  // console.log(formState);
+
+  const inputChangeHandler = useCallback(
+    (inputIdentifier, inputValue, inputValidity) => {
+      dispatchFormState({
+        type: FORM_INPUT_UPDATE,
+        value: inputValue,
+        isValid: inputValidity,
+        input: inputIdentifier,
+      });
+    },
+    [dispatchFormState]
+  );
+
+  const handleBtnClick = () => {
     if (!props.checkout) {
       history.replace("/");
       dispatch(toggleCheckout());
@@ -20,17 +84,14 @@ const CheckoutModal = (props) => {
     } else {
       dispatch(toggleCheckout());
       dispatch(closeCart());
+      dispatch(emptyCart());
     }
   };
 
   return (
     <div className="modalContainer">
       <div className="modalContent">
-        <div
-          className={
-            num === 1 ? "modalHeader" : "modalHeader modalMobileHeader"
-          }
-        >
+        <div className="modalHeader">
           {props.checkout && (
             <p
               className="exitBtn exitBtnFloat"
@@ -53,22 +114,28 @@ const CheckoutModal = (props) => {
         {props.checkout && (
           <>
             <Input
+              errorText="Please enter a valid first name!"
               label="First Name"
-              id="fName"
+              id="firstName"
               type="text"
               placeholder="Type your first name here"
+              onInputChange={inputChangeHandler}
             />
             <Input
+              errorText="Please enter a valid last name!"
               label="Last Name"
-              id="lName"
+              id="lastName"
               type="text"
               placeholder="Type your last name here"
+              onInputChange={inputChangeHandler}
             />
             <Input
+              errorText="Please enter a valid email address!"
               label="Email Address"
               id="email"
               type="email"
               placeholder="Type your email address here"
+              onInputChange={inputChangeHandler}
             />
             <div className="dateGenderInputs">
               <Input
@@ -76,42 +143,50 @@ const CheckoutModal = (props) => {
                 id="date"
                 type="date"
                 extraContainerClass="shortInput"
+                onInputChange={inputChangeHandler}
               />
-              <Input
-                label="Gender"
-                id="gender"
-                type="text"
-                extraContainerClass="shortInput"
-                select
-              />
+              <div className="inputContainer shortInput">
+                <label htmlFor="gender" className="inputLabel">
+                  Gender
+                </label>
+                <select name="gender" id="gender">
+                  <option value="Female">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
             </div>
             <Input
+              errorText="Please enter a valid address!"
               label="Address"
               id="address"
               type="text"
               placeholder="Type your address here"
+              onInputChange={inputChangeHandler}
             />
             <Input
+              errorText="Please enter a valid code!"
               label="Zip Code"
-              id="zip"
+              id="code"
               type="number"
               placeholder="e.g. 21000"
+              onInputChange={inputChangeHandler}
             />
             <Input
               label="I agree"
               id="check"
               type="checkbox"
               extraContainerClass="checkbox"
+              onInputChange={inputChangeHandler}
             />
           </>
         )}
         <div
           onClick={() => {
-            handleBtnClick(num);
+            if (formState.formIsValid) handleBtnClick();
           }}
-          className={
-            num === 1 ? "checkoutBtn" : "checkoutBtn checkoutMobileBtn"
-          }
+          className={`checkoutBtn ${
+            !formState.formIsValid ? "disableBtn" : ""
+          }`}
         >
           {props.checkout ? "Checkout" : "Back to Shop"}
         </div>

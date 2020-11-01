@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams, useLocation } from "react-router-dom";
 
 import WorkshopBox from "../components/WorkshopBox";
 
 const WorkshopsList = (props) => {
   const history = useHistory();
+  const location = useLocation();
   const { cat } = useParams();
 
   const [data, setData] = useState([]);
@@ -31,6 +32,14 @@ const WorkshopsList = (props) => {
   useEffect(() => {
     fetchData();
   }, [fetchData]);
+
+  useEffect(() => {
+    const item = document.querySelector(".scroll-" + location.state);
+    if (item) {
+      item.scrollIntoView();
+      window.scrollBy(0, -200);
+    }
+  });
 
   const displayedWorkshops = data.map((workshop) => (
     <WorkshopBox key={workshop.id} workshopInfo={workshop} />

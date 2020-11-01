@@ -24,7 +24,7 @@ const WorkshopBox = ({ workshopInfo }) => {
   };
 
   return (
-    <div className="workshopBox">
+    <div className={`workshopBox scroll-${workshopInfo.id}`}>
       <div className="boxImgContainer">
         <Link to={`/details/${workshopInfo.id}`}>
           <img className="boxImg" src={workshopInfo.imageUrl} alt="img" />

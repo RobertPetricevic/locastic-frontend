@@ -35,7 +35,7 @@ const WorkshopDetails = (props) => {
     <div className="detailsPage">
       <div className="topContent">
         <div className="goBack">
-          <Link to="/">
+          <Link to={{ pathname: `/`, state: workshopInfo.id }}>
             <div className="goBackBox">
               <ion-icon name="arrow-back" />
               <p>Back</p>

@@ -12,7 +12,6 @@ import { BeatLoader } from "react-spinners";
 const WorkshopDetails = (props) => {
   const isCartOn = useSelector((state) => state.isCartOn);
   const [currentWorkshop, setCurrentWorkshop] = useState([]);
-  console.log("currentWorkshop:", currentWorkshop);
   const [userName, setUserName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [selectValue, setSelectValue] = useState(1);

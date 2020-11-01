@@ -1,16 +1,20 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Link, useHistory, useParams, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 import { BeatLoader } from "react-spinners";
 
 import WorkshopBox from "../components/WorkshopBox";
+import { fetchData } from "../store/actions";
 
 const WorkshopsList = (props) => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
   const { cat } = useParams();
 
-  const [data, setData] = useState([]);
+  const data = useSelector((state) => state.storedData);
+
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isReadMore, setIsReadMore] = useState(false);
@@ -19,28 +23,19 @@ const WorkshopsList = (props) => {
     history.push(`/${value}`);
   };
 
-  const fetchData = useCallback(async () => {
-    const url = `http://localhost:3000/workshops?${
-      cat ? `category=${cat}` : ""
-    }&_sort=date&_order=dsc&_page=${page}&_limit=9`;
+  const getData = useCallback(async () => {
     if (page !== 1) {
       setIsReadMore(true);
     }
     setIsLoading(true);
-    const response = await fetch(url);
-    const resData = await response.json();
-    if (page !== 1) {
-      setData((prevData) => [...prevData, ...resData]);
-    } else {
-      setData(resData);
-    }
+    await dispatch(fetchData(cat, page));
     setIsLoading(false);
     setIsReadMore(false);
-  }, [setData, page, cat]);
+  }, [dispatch, cat, page]);
 
   useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    getData();
+  }, [getData]);
 
   useEffect(() => {
     const item = document.querySelector(".scroll-" + location.state);

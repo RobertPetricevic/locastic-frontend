@@ -8,6 +8,7 @@ import {
   ADD_TO_CART_SELECT,
   REMOVE_FROM_CART,
   EMPTY_CART,
+  FETCH_DATA,
 } from "./actions";
 
 const initialState = {
@@ -18,6 +19,7 @@ const initialState = {
     cartItems: [],
     cartTotal: 0,
   },
+  storedData: [],
 };
 
 const appReducer = (state = initialState, action) => {
@@ -117,6 +119,11 @@ const appReducer = (state = initialState, action) => {
           cartItems: [],
           cartTotal: 0,
         },
+      };
+    case FETCH_DATA:
+      return {
+        ...state,
+        storedData: action.data,
       };
     default:
       return state;

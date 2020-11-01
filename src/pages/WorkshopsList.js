@@ -1,18 +1,30 @@
-import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState, useEffect, useCallback } from "react";
+import { Link, useHistory, useParams } from "react-router-dom";
 
 import WorkshopBox from "../components/WorkshopBox";
 
-import WORKSHOPS from "../data/workshops";
-
 const WorkshopsList = (props) => {
   const history = useHistory();
+  const { cat } = useParams();
 
-  function handleSelectChange(value) {
+  const [data, setData] = useState([]);
+  console.log("data:", data);
+
+  const handleSelectChange = (value) => {
     history.push(`/${value}`);
-  }
+  };
 
-  const displayedWorkshops = WORKSHOPS.map((workshop) => (
+  const fetchData = useCallback(async () => {
+    const response = await fetch("http://localhost:3000/workshops");
+    const resData = await response.json();
+    setData(resData);
+  }, [setData]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  const displayedWorkshops = data.map((workshop) => (
     <WorkshopBox key={workshop.id} workshopInfo={workshop} />
   ));
 

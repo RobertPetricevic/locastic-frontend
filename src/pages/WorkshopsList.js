@@ -82,7 +82,11 @@ const WorkshopsList = (props) => {
             setPage(1);
           }}
         >
-          <p className="category all">All</p>
+          <p
+            className={`category all ${cat === undefined && "currentCategory"}`}
+          >
+            <span>All</span>
+          </p>
         </Link>
         <Link
           to="/design"
@@ -90,8 +94,9 @@ const WorkshopsList = (props) => {
             setPage(1);
           }}
         >
-          <p className="category">
-            <i className="fas fa-paint-brush categoryIcon"></i>Design
+          <p className={`category ${cat === "design" && "currentCategory"}`}>
+            <i className="fas fa-paint-brush categoryIcon"></i>
+            <span>Design</span>
           </p>
         </Link>
         <Link
@@ -100,8 +105,9 @@ const WorkshopsList = (props) => {
             setPage(1);
           }}
         >
-          <p className="category">
-            <i className="fas fa-desktop categoryIcon"></i>Frontend
+          <p className={`category ${cat === "frontend" && "currentCategory"}`}>
+            <i className="fas fa-desktop categoryIcon"></i>
+            <span>Frontend</span>
           </p>
         </Link>
         <Link
@@ -110,8 +116,9 @@ const WorkshopsList = (props) => {
             setPage(1);
           }}
         >
-          <p className="category">
-            <i className="fas fa-code categoryIcon"></i>Backend
+          <p className={`category ${cat === "backend" && "currentCategory"}`}>
+            <i className="fas fa-code categoryIcon"></i>
+            <span>Backend</span>
           </p>
         </Link>
         <Link
@@ -120,8 +127,9 @@ const WorkshopsList = (props) => {
             setPage(1);
           }}
         >
-          <p className="category">
-            <i className="fas fa-bolt categoryIcon"></i>Marketing
+          <p className={`category ${cat === "marketing" && "currentCategory"}`}>
+            <i className="fas fa-bolt categoryIcon"></i>
+            <span>Marketing</span>
           </p>
         </Link>
       </div>

@@ -14,12 +14,6 @@ body {
   margin: 0;
 }
 
-/* body::after {
-  content: "";
-  display: block;
-  height: 60px;
-} */
-
 body::before {
   content: "";
   display: block;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import moment from "moment";
@@ -9,42 +9,72 @@ import WorkshopBox from "../components/WorkshopBox";
 import { addToCart } from "../store/actions";
 
 const WorkshopDetails = (props) => {
+  const [currentWorkshop, setCurrentWorkshop] = useState([]);
+  const [userName, setUserName] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [selectValue, setSelectValue] = useState(1);
+
   const dispatch = useDispatch();
   const { id } = useParams();
   const shopId = parseInt(id);
-  const workshopInfo = WORKSHOPS.find((workshop) => workshop.id === shopId);
-  const userName = USERS.find((user) => user.id === shopId).name;
 
-  const threeWorkShops = WORKSHOPS.slice(0, 3);
-  // const threeWorkShops = [];
+  const threeWorkShops = [];
 
   const handleChange = (e) => {
     setSelectValue(e.target.value);
   };
 
   const handleAddToCart = (e) => {
-    dispatch(addToCart(workshopInfo, parseInt(selectValue)));
+    dispatch(addToCart(currentWorkshop, parseInt(selectValue)));
   };
 
   const displayedSimilarWorkshops = threeWorkShops.map((workshop) => (
     <WorkshopBox key={workshop.id} workshopInfo={workshop} />
   ));
 
+  const fetchWorkshop = useCallback(async () => {
+    const url = `http://localhost:3000/workshops/${id}`;
+
+    setIsLoading(true);
+    const response = await fetch(url);
+    const resData = await response.json();
+    setCurrentWorkshop(resData);
+    setIsLoading(false);
+  }, [id]);
+
+  const fetchUserName = useCallback(
+    async (userId) => {
+      const url = `http://localhost:3000/users/${userId}`;
+      const response = await fetch(url);
+      const resData = await response.json();
+      setUserName(resData.name);
+    },
+    [id]
+  );
+
+  useEffect(() => {
+    fetchWorkshop().then(fetchUserName(currentWorkshop.userId));
+  }, [fetchWorkshop, fetchUserName, currentWorkshop]);
+
   return (
     <div className="detailsPage">
       <div className="topContent">
         <div className="goBack">
-          <Link to={{ pathname: `/`, state: workshopInfo.id }}>
+          <Link to={{ pathname: `/`, state: currentWorkshop.id }}>
             <div className="goBackBox">
               <ion-icon name="arrow-back" />
               <p>Back</p>
             </div>
           </Link>
         </div>
+
         <div className="detailsBox">
           <div className="detailsImgContainer">
-            <img src={workshopInfo.imageUrl} className="detailsImg" alt="img" />
+            <img
+              src={currentWorkshop.imageUrl}
+              className="detailsImg"
+              alt="img"
+            />
           </div>
           <div className="detailsContent">
             <div className="detailsInfo">
@@ -54,27 +84,27 @@ const WorkshopDetails = (props) => {
                 </div>
                 <p className="date">
                   <i className="far fa-calendar-alt"></i>{" "}
-                  {moment(workshopInfo.date).format("DD.MM.YYYY")}
+                  {moment(currentWorkshop.date).format("DD.MM.YYYY")}
                 </p>
                 <p className="time">
                   <i className="far fa-clock"></i>{" "}
-                  {moment(workshopInfo.date).format("HH:MM")} h
+                  {moment(currentWorkshop.date).format("HH:MM")} h
                 </p>
               </div>
               <div className="detailsMainInfo">
-                <h1 className="detailsTitle">{workshopInfo.title}</h1>
+                <h1 className="detailsTitle">{currentWorkshop.title}</h1>
                 <h2 className="detailsSpeaker">
                   <span>WITH </span>
                   {userName}
                 </h2>
-                <p className="detailsDescription">{workshopInfo.desc}</p>
+                <p className="detailsDescription">{currentWorkshop.desc}</p>
               </div>
             </div>
             <div className="detailsBuy">
               <div className="buyCard">
                 <p className="cardText">Buy Your Ticket</p>
                 <p className="cardPrice">
-                  {workshopInfo.price} <span>EUR</span>
+                  {currentWorkshop.price} <span>EUR</span>
                 </p>
                 <div className="detailsBuyInfo">
                   <select

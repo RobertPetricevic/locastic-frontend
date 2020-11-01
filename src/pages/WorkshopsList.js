@@ -9,19 +9,24 @@ const WorkshopsList = (props) => {
 
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
-  // console.log("data:", data);
 
   const handleSelectChange = (value) => {
     history.push(`/${value}`);
   };
 
   const fetchData = useCallback(async () => {
-    const url = `http://localhost:3000/workshops?_page=${page}&_limit=9`;
+    const url = `http://localhost:3000/workshops?${
+      cat ? `category=${cat}` : ""
+    }&_sort=date&_order=dsc&_page=${page}&_limit=9`;
 
     const response = await fetch(url);
     const resData = await response.json();
-    setData((prevData) => [...prevData, ...resData]);
-  }, [setData, page]);
+    if (page !== 1) {
+      setData((prevData) => [...prevData, ...resData]);
+    } else {
+      setData(resData);
+    }
+  }, [setData, page, cat]);
 
   useEffect(() => {
     fetchData();
@@ -38,7 +43,10 @@ const WorkshopsList = (props) => {
         <select
           name="catselect"
           id="catSelect"
-          onChange={(event) => handleSelectChange(event.target.value)}
+          onChange={(event) => {
+            handleSelectChange(event.target.value);
+            setPage(1);
+          }}
         >
           <option value="">All</option>
           <option value="design">Design</option>
@@ -54,25 +62,50 @@ const WorkshopsList = (props) => {
         </p>
       </div>
       <div className="categoriesBox">
-        <Link to="/">
+        <Link
+          to="/"
+          onClick={() => {
+            setPage(1);
+          }}
+        >
           <p className="category all">All</p>
         </Link>
-        <Link to="/design">
+        <Link
+          to="/design"
+          onClick={() => {
+            setPage(1);
+          }}
+        >
           <p className="category">
             <i className="fas fa-paint-brush categoryIcon"></i>Design
           </p>
         </Link>
-        <Link to="/frontend">
+        <Link
+          to="/frontend"
+          onClick={() => {
+            setPage(1);
+          }}
+        >
           <p className="category">
             <i className="fas fa-desktop categoryIcon"></i>Frontend
           </p>
         </Link>
-        <Link to="/backend">
+        <Link
+          to="/backend"
+          onClick={() => {
+            setPage(1);
+          }}
+        >
           <p className="category">
             <i className="fas fa-code categoryIcon"></i>Backend
           </p>
         </Link>
-        <Link to="/marketing">
+        <Link
+          to="/marketing"
+          onClick={() => {
+            setPage(1);
+          }}
+        >
           <p className="category">
             <i className="fas fa-bolt categoryIcon"></i>Marketing
           </p>

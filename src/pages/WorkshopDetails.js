@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import moment from "moment";
 
@@ -10,6 +10,7 @@ import WORKSHOPS from "../data/workshops";
 import { BeatLoader } from "react-spinners";
 
 const WorkshopDetails = (props) => {
+  const isCartOn = useSelector((state) => state.isCartOn);
   const [currentWorkshop, setCurrentWorkshop] = useState([]);
   console.log("currentWorkshop:", currentWorkshop);
   const [userName, setUserName] = useState("");
@@ -106,7 +107,7 @@ const WorkshopDetails = (props) => {
                 </div>
               </div>
               <div className="detailsBuy">
-                <div className="buyCard">
+                <div className={`buyCard ${isCartOn && "none"}`}>
                   <p className="cardText">Buy Your Ticket</p>
                   <p className="cardPrice">
                     {currentWorkshop.price} <span>EUR</span>

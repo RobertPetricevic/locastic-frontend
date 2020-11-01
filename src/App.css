@@ -132,7 +132,7 @@ a {
   right: 0px;
   padding: 0 10px;
   background-color: white;
-  z-index: 4;
+  z-index: 100;
 }
 
 /* KAKO NE PREKRIJE ONO DOLE ZA KUPIT NA MALIM EKRANIMAAAAA */
@@ -861,7 +861,15 @@ a {
   background-color: var(--hoverYellow);
 }
 
+.none {
+  display: none;
+}
+
 @media (min-width: 500px) {
+  .none {
+    display: block;
+  }
+
   .detailsPage {
     display: flex;
     flex-direction: column;

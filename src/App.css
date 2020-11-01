@@ -88,6 +88,7 @@ a {
 
 .cartPopupBox {
   position: fixed;
+  overflow: scroll;
   width: 250px;
   height: 100vh;
   top: 0px;
@@ -182,7 +183,7 @@ a {
 .workshopCartBox {
   display: flex;
   background-color: var(--lighterGray);
-  height: 100px;
+  min-height: 100px;
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 10px;
@@ -194,7 +195,7 @@ a {
 
 .workShopCartContent {
   width: 70%;
-  padding: 10px;
+  padding: 10px 15px;
 }
 
 .workshopCartBoxImg {
@@ -205,6 +206,8 @@ a {
 
 .workShopCartInfo {
   display: flex;
+  justify-content: space-between;
+  width: 100%;
   margin-bottom: 10px;
 }
 
@@ -232,6 +235,7 @@ a {
   font-size: 1rem;
   color: var(--lightGray);
   cursor: pointer;
+  margin-left: auto;
 }
 
 .workShopCartTrash ion-icon:hover {
@@ -253,6 +257,11 @@ a {
   }
   .workShopCartInfo {
     margin-bottom: 15px;
+  }
+  .workShopCartContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
   .workShopCartTitle {
     font-size: 1.2rem;
@@ -281,17 +290,6 @@ a {
 /* ------------------ WORKSHOP CART BOX ------------------ */
 
 /* ------------------ FOOTER ------------------ */
-
-/* .footerContainer {
-  position: absolute;
-  bottom: 0px;
-  width: 100%;
-  min-height: 60px;
-  background-color: var(--lighterGray);
-  display: flex;
-  align-items: center;
-  padding-left: 60px;
-} */
 
 .footerContainer {
   min-height: 60px;
@@ -451,28 +449,24 @@ a {
 /* ------------------ WORKSHOP BOX ------------------ */
 
 .workshopBox {
-  display: block;
-  height: 320px;
-  width: 210px;
-  border-radius: 5px;
-  -webkit-box-shadow: 1px 1px 18px 4px rgba(0, 0, 0, 0.16);
-  -moz-box-shadow: 1px 1px 18px 4px rgba(0, 0, 0, 0.16);
-  box-shadow: 1px 1px 18px 4px rgba(0, 0, 0, 0.16);
+  display: flex;
+  background-color: white;
+  border: 1px solid var(--lighterGray);
+  height: 120px;
+  border-radius: 10px;
   overflow: hidden;
-  margin-right: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+  justify-content: space-between;
 }
 
 .boxImgContainer {
-  height: 40%;
-  width: 100%;
+  width: 35%;
 }
 
 .boxImg {
-  height: 100%;
   width: 100%;
+  height: 100%;
   object-fit: cover;
-  cursor: pointer;
 }
 
 .boxImg:hover {
@@ -484,20 +478,18 @@ a {
 }
 
 .boxContent {
+  position: relative;
+  width: 65%;
+  padding: 10px 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 60%;
-  position: relative;
-  padding: 10px 10px;
+  justify-content: space-evenly;
 }
 
 .boxContentContainer {
-  width: 90%;
-  height: 100%;
   display: flex;
   flex-direction: column;
+  height: 100%;
   justify-content: space-between;
 }
 
@@ -509,21 +501,18 @@ a {
   color: white;
   border-radius: 5px;
   position: absolute;
-  right: 10px;
-  top: -15px;
+  left: -15px;
+  top: 10px;
   width: 25px;
   height: 25px;
-}
-
-.boxFloatingIcon {
-  font-size: 0.6rem;
 }
 
 .boxInfo {
   display: flex;
 }
 
-.boxInfo p {
+.date,
+.time {
   font-size: 0.6rem;
   font-weight: 700;
   color: var(--darkGray);
@@ -541,9 +530,14 @@ a {
   color: var(--hoverBlue);
 }
 
+.buyInfo {
+  display: flex;
+  justify-content: space-between;
+  /* width: 100%; */
+}
+
 .price {
   font-weight: 700;
-  columns: var(--darkGray);
 }
 
 .price span {
@@ -551,120 +545,6 @@ a {
 }
 
 .boxBtn {
-  background-color: var(--yellow);
-  display: inline-block;
-  padding: 8px 5px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  border-radius: 3px;
-  text-align: center;
-  cursor: pointer;
-  margin-bottom: 10px;
-}
-
-.boxBtn:hover {
-  background-color: var(--hoverYellow);
-}
-
-@media (max-width: 500px) {
-  .workshopBox {
-    display: none;
-  }
-}
-
-/* ------------------ WORKSHOP BOX ------------------ */
-
-/* ------------------ MOBILE WORKSHOP BOX ------------------ */
-.mobileWorkshopBox {
-  display: flex;
-  background-color: white;
-  border: 1px solid var(--lighterGray);
-  height: 120px;
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 10px;
-  justify-content: space-between;
-}
-
-.mobileBoxImgContainer {
-  width: 35%;
-  height: 100%;
-}
-
-.mobileBoxImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.mobileBoxImg:hover {
-  opacity: 0.8;
-}
-
-.mobileBoxImgContainer:hover {
-  background-color: black;
-}
-
-.mobileBoxContent {
-  position: relative;
-  width: 65%;
-  padding: 10px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-
-.mobileBoxIconContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--darkGray);
-  color: white;
-  border-radius: 5px;
-  position: absolute;
-  left: -15px;
-  top: 10px;
-  width: 25px;
-  height: 25px;
-}
-
-.mobileBoxInfo {
-  display: flex;
-}
-
-.mobileTime,
-.mobileDate {
-  font-size: 0.6rem;
-  font-weight: 700;
-  color: var(--darkGray);
-  margin-right: 5px;
-}
-
-.mobileBoxTitle {
-  color: var(--blue);
-  font-weight: 700;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
-
-.mobileBoxTitle:hover {
-  color: var(--hoverBlue);
-}
-
-.mobileBuyInfo {
-  display: flex;
-  justify-content: space-between;
-}
-
-.mobilePrice {
-  font-weight: 700;
-}
-
-.mobilePrice span {
-  font-size: 0.6rem;
-}
-
-.mobileBoxBtn {
   background-color: var(--yellow);
   width: 30px;
   height: 30px;
@@ -674,20 +554,104 @@ a {
   border-radius: 5px;
 }
 
-.mobileBoxBtn:hover {
+.boxBtn:hover {
   background-color: var(--hoverYellow);
 }
 
-.mobileBoxBtn ion-icon {
+.boxBtn ion-icon {
   font-size: 1.4rem;
 }
 
+.BTNtext {
+  display: none;
+}
+
 @media (min-width: 500px) {
-  .mobileWorkshopBox {
+  .workshopBox {
+    display: block;
+    height: 320px;
+    width: 240px;
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    margin-right: 15px;
+    overflow: hidden;
+    -webkit-box-shadow: 1px 1px 18px 4px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 1px 1px 18px 4px rgba(0, 0, 0, 0.16);
+    box-shadow: 1px 1px 18px 4px rgba(0, 0, 0, 0.16);
+  }
+  .boxImgContainer {
+    height: 40%;
+    width: 100%;
+  }
+
+  .boxImg {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    cursor: pointer;
+  }
+
+  .boxContent {
+    position: relative;
+    width: 100%;
+    height: 60%;
+    padding: 5px 10px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .boxContentContainer {
+    height: 100%;
+    width: 90%;
+    justify-content: space-around;
+  }
+
+  .boxIconContainer {
+    position: absolute;
+    top: -10px;
+    left: 200px;
+  }
+
+  .boxFloatingIcon {
+    font-size: 0.6rem;
+  }
+
+  .buyInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .price {
+    font-weight: 700;
+    columns: var(--darkGray);
+    margin-bottom: 15px;
+  }
+
+  .boxBtn {
+    width: 80%;
+    display: inline-block;
+    border-radius: 5px;
+    padding: 8px 10px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    margin: 0 auto 10px;
+  }
+
+  .BTNtext {
+    display: block;
+  }
+
+  .BTNicon {
     display: none;
   }
 }
-/* ------------------ MOBILE WORKSHOP BOX ------------------ */
+
+/* ------------------ WORKSHOP BOX ------------------ */
 
 /* ------------------ WORKSHOP DETAILS PAGE ------------------ */
 
@@ -831,14 +795,14 @@ a {
   font-weight: 700;
 }
 
-.buyInfo {
+.detailsBuyInfo {
   display: flex;
   align-items: center;
   width: 65%;
   justify-content: space-between;
 }
 
-.buyInfo select {
+.detailsBuyInfo select {
   border: 1px solid var(--blue);
   padding: 8px 15px;
   outline: none;
@@ -1004,14 +968,14 @@ a {
     font-weight: 700;
   }
 
-  .buyInfo {
+  .detailsBuyInfo {
     display: flex;
     width: auto;
     flex-wrap: wrap;
   }
 
-  .buyInfo select {
-    padding: 8px 10px;
+  .detailsBuyInfo select {
+    padding: 6px 6px;
     margin-bottom: 5px;
   }
 

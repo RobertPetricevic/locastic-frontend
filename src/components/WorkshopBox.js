@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import moment from "moment";
 
 import { addToCart } from "../store/actions";
@@ -25,11 +25,11 @@ const WorkshopBox = ({ workshopInfo }) => {
 
   return (
     <div className="workshopBox">
-      <Link to={`/details/${workshopInfo.id}`}>
-        <div className="boxImgContainer">
+      <div className="boxImgContainer">
+        <Link to={`/details/${workshopInfo.id}`}>
           <img className="boxImg" src={workshopInfo.imageUrl} alt="img" />
-        </div>
-      </Link>
+        </Link>
+      </div>
       <div className="boxContent">
         <div className="boxContentContainer">
           <div className="boxIconContainer">
@@ -52,17 +52,22 @@ const WorkshopBox = ({ workshopInfo }) => {
           <Link to={`/details/${workshopInfo.id}`}>
             <p className="boxTitle">{workshopInfo.title}</p>
           </Link>
-          <p className="price">
-            {workshopInfo.price} <span>EUR</span>
-          </p>
-          <p
-            className="boxBtn"
-            onClick={() => {
-              dispatch(addToCart(workshopInfo, 1));
-            }}
-          >
-            Add to cart
-          </p>
+          <div className="buyInfo">
+            <p className="price">
+              {workshopInfo.price} <span>EUR</span>
+            </p>
+            <div
+              className="boxBtn"
+              onClick={() => {
+                dispatch(addToCart(workshopInfo, 1));
+              }}
+            >
+              <div className="BTNicon">
+                <ion-icon className="BTNicon" name="cart-outline"></ion-icon>
+              </div>
+              <p className="BTNtext">Add to cart</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

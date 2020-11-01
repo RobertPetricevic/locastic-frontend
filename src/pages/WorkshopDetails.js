@@ -3,11 +3,9 @@ import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import moment from "moment";
 
-import WorkhopBox from "../components/WorkshopBox";
-
 import WORKSHOPS from "../data/workshops";
 import USERS from "../data/users";
-import MobileWorkshopBox from "../components/MobileWorkshopBox";
+import WorkshopBox from "../components/WorkshopBox";
 import { addToCart } from "../store/actions";
 
 const WorkshopDetails = (props) => {
@@ -30,10 +28,7 @@ const WorkshopDetails = (props) => {
   };
 
   const displayedSimilarWorkshops = threeWorkShops.map((workshop) => (
-    <React.Fragment key={workshop.id}>
-      <MobileWorkshopBox workshopInfo={workshop} />
-      <WorkhopBox workshopInfo={workshop} />
-    </React.Fragment>
+    <WorkshopBox key={workshop.id} workshopInfo={workshop} />
   ));
 
   return (
@@ -81,7 +76,7 @@ const WorkshopDetails = (props) => {
                 <p className="cardPrice">
                   {workshopInfo.price} <span>EUR</span>
                 </p>
-                <div className="buyInfo">
+                <div className="detailsBuyInfo">
                   <select
                     name="num"
                     id="num"
@@ -102,9 +97,9 @@ const WorkshopDetails = (props) => {
                     <option value="12">12</option>
                     <option value="13">13</option>
                   </select>
-                  <a className="cardBtn" onClick={handleAddToCart}>
+                  <p className="cardBtn" onClick={handleAddToCart}>
                     Add to cart
-                  </a>
+                  </p>
                   <p className="cardTotal">Subtotal: 4.950,00 EUR</p>
                 </div>
               </div>

@@ -1,6 +1,6 @@
-import React, { useReducer, useCallback } from "react";
+import React, { useReducer, useCallback, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import Input from "./Input";
 import {
@@ -8,7 +8,10 @@ import {
   closeModal,
   closeCart,
   emptyCart,
+  storeOrders,
 } from "../store/actions";
+
+import { ClipLoader } from "react-spinners";
 
 const FORM_INPUT_UPDATE = "FORM_INPUT_UPDATE";
 
@@ -36,7 +39,8 @@ const formReducer = (state, action) => {
 };
 
 const CheckoutModal = (props) => {
-  const isModalOn = useSelector((state) => state.isModalOn);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -76,17 +80,37 @@ const CheckoutModal = (props) => {
     [dispatchFormState]
   );
 
-  const handleBtnClick = () => {
+  const handleBtnClick = async () => {
     if (!props.checkout) {
       history.replace("/");
       dispatch(toggleCheckout());
       dispatch(closeModal());
     } else {
-      dispatch(toggleCheckout());
-      dispatch(closeCart());
-      dispatch(emptyCart());
+      if (!formState.formIsValid) {
+        alert("Wrong input! Please check the errors in the form.", [
+          { text: "Okay" },
+        ]);
+        return;
+      }
+      setError(null);
+      setIsLoading(true);
+      try {
+        await dispatch(storeOrders());
+        dispatch(toggleCheckout());
+        dispatch(closeCart());
+        dispatch(emptyCart());
+      } catch (err) {
+        setError(err.message);
+      }
+      setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (error) {
+      alert(`${error}  Please try again`, error, [{ text: "Okay" }]);
+    }
+  }, [error]);
 
   return (
     <div className="modalContainer">
@@ -182,13 +206,17 @@ const CheckoutModal = (props) => {
         )}
         <div
           onClick={() => {
-            if (formState.formIsValid) handleBtnClick();
+            handleBtnClick();
           }}
-          className={`checkoutBtn ${
-            !formState.formIsValid ? "disableBtn" : ""
-          }`}
+          className="checkoutBtn"
         >
-          {props.checkout ? "Checkout" : "Back to Shop"}
+          {isLoading ? (
+            <ClipLoader size={10} />
+          ) : props.checkout ? (
+            "Checkout"
+          ) : (
+            "Back to Shop"
+          )}
         </div>
       </div>
     </div>

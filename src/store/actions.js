@@ -8,6 +8,7 @@ export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const ADD_TO_CART_SELECT = "ADD_TO_CART_SELECT";
 export const EMPTY_CART = "EMPTY_CART";
 export const FETCH_DATA = "FETCH_DATA";
+export const STORE_ORDERS = "STORE_ORDERS";
 
 export const openCart = () => {
   return { type: OPEN_CART };
@@ -64,5 +65,28 @@ export const fetchData = (category, page) => {
     }
 
     dispatch({ type: FETCH_DATA, data });
+  };
+};
+
+export const storeOrders = () => {
+  return async (dispatch, getState) => {
+    const products = getState().cart.cartItems;
+    const total = getState().cart.cartTotal;
+    const response = await fetch("http://localhost:3000/orders", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        products,
+        total,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Something went wrong!");
+    }
+
+    dispatch({ type: STORE_ORDERS });
   };
 };

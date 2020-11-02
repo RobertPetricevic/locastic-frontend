@@ -25,6 +25,7 @@ const WorkshopsList = (props) => {
   };
 
   const getData = useCallback(async () => {
+    setError(null);
     if (page !== 1) {
       setIsReadMore(true);
     }

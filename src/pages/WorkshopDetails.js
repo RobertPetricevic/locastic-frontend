@@ -13,6 +13,7 @@ const WorkshopDetails = (props) => {
   const [currentWorkshop, setCurrentWorkshop] = useState([]);
   const [userName, setUserName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
   const [selectValue, setSelectValue] = useState(1);
   const [similar, setSimilar] = useState([]);
 
@@ -35,25 +36,43 @@ const WorkshopDetails = (props) => {
 
   const fetchWorkshop = useCallback(async () => {
     setIsLoading(true);
-    const response = await fetch(url);
-    const resData = await response.json();
-    const responseUser = await fetch(
-      `http://localhost:3000/users/${resData.userId}`
-    );
-    const resDataUser = await responseUser.json();
-    const responseSimilar = await fetch(
-      `http://localhost:3000/workshops?category=${resData.category}&id_ne=${id}&_start=0&_end=3`
-    );
-    const resDataSimilar = await responseSimilar.json();
-    setCurrentWorkshop(resData);
+    setError(null);
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+      const resData = await response.json();
+      const responseUser = await fetch(
+        `http://localhost:3000/usersssssss/${resData.userId}`
+      );
+      if (!responseUser.ok) {
+        console.log("ERROR");
+        throw new Error("Something went wrong!");
+      }
+      const resDataUser = await responseUser.json();
+      const responseSimilar = await fetch(
+        `http://localhost:3000/workshops?category=${resData.category}&id_ne=${id}&_start=0&_end=3`
+      );
+      if (!responseSimilar.ok) {
+        throw new Error("Something went wrong!");
+      }
+      const resDataSimilar = await responseSimilar.json();
+      setCurrentWorkshop(resData);
+      setUserName(resDataUser.name);
+      setSimilar(resDataSimilar);
+    } catch (err) {
+      setError(err.message);
+    }
+
     setIsLoading(false);
-    setUserName(resDataUser.name);
-    setSimilar(resDataSimilar);
   }, [url]);
 
   useEffect(() => {
     fetchWorkshop();
   }, [fetchWorkshop]);
+
+  console.log(error);
 
   return (
     <div className="detailsPage">
@@ -67,7 +86,19 @@ const WorkshopDetails = (props) => {
           </Link>
         </div>
 
-        {isLoading ? (
+        {error ? (
+          <div className="errorContainer">
+            <p className="errorTxt">{error}</p>
+            <div
+              className="tryAgain"
+              onClick={() => {
+                fetchWorkshop();
+              }}
+            >
+              {isLoading ? <ClipLoader size={10} /> : "Try Again"}
+            </div>
+          </div>
+        ) : isLoading ? (
           <div className="spinnerContainer">
             <ClipLoader size={150} />
           </div>

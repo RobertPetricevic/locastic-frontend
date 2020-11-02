@@ -134,7 +134,9 @@ const WorkshopDetails = (props) => {
                     <p className="cardBtn" onClick={handleAddToCart}>
                       Add to cart
                     </p>
-                    <p className="cardTotal">Subtotal: 4.950,00 EUR</p>
+                    <p className="cardTotal">
+                      Subtotal: {currentWorkshop.price * selectValue} EUR
+                    </p>
                   </div>
                 </div>
               </div>

@@ -40,8 +40,17 @@ const WorkshopsList = (props) => {
   }, [dispatch, cat, page]);
 
   useEffect(() => {
+    console.log(location.state);
+    if (location.state) {
+      const item = document.querySelector(".scroll-" + location.state);
+      if (item) {
+        item.scrollIntoView();
+        window.scrollBy(0, -200);
+      }
+      return;
+    }
     getData();
-  }, [getData]);
+  }, [getData, location.state]);
 
   useEffect(() => {
     const item = document.querySelector(".scroll-" + location.state);
@@ -50,12 +59,6 @@ const WorkshopsList = (props) => {
       window.scrollBy(0, -200);
     }
   });
-
-  // useEffect(() => {
-  //   if (error) {
-  //     alert(`${error}  Please try again`, error, [{ text: "Okay" }]);
-  //   }
-  // }, [error]);
 
   const displayedWorkshops = data.map((workshop) => (
     <WorkshopBox key={workshop.id} workshopInfo={workshop} />
@@ -168,6 +171,7 @@ const WorkshopsList = (props) => {
       <div
         className={`loadMore ${isReadMore && "loadSpinner"}`}
         onClick={() => {
+          history.replace({ pathname: "/", state: undefined });
           setPage((prevNum) => prevNum + 1);
         }}
       >

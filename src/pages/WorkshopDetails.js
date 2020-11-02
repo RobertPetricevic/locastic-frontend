@@ -44,7 +44,7 @@ const WorkshopDetails = (props) => {
       }
       const resData = await response.json();
       const responseUser = await fetch(
-        `http://localhost:3000/usersssssss/${resData.userId}`
+        `http://localhost:3000/users/${resData.userId}`
       );
       if (!responseUser.ok) {
         console.log("ERROR");

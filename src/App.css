@@ -154,12 +154,10 @@ a {
 
 /* ------------------ CART POPUP BOX ------------------ */
 
-/* KAKO NE PREKRIJE ONO DOLE ZA KUPIT NA MALIM EKRANIMAAAAA */
-
 .cartPopupBox {
   position: fixed;
   overflow: scroll;
-  width: 250px;
+  width: 350px;
   height: 100vh;
   top: 0px;
   right: 0px;
@@ -167,8 +165,6 @@ a {
   background-color: white;
   z-index: 100;
 }
-
-/* KAKO NE PREKRIJE ONO DOLE ZA KUPIT NA MALIM EKRANIMAAAAA */
 
 .popupHeader {
   margin: 15px 10px;

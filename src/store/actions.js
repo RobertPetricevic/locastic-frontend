@@ -51,20 +51,29 @@ export const emptyCart = () => {
 export const fetchData = (category, page) => {
   return async (dispatch, getState) => {
     let data;
-    const response = await fetch(
-      `http://localhost:3000/workshops?${
-        category ? `category=${category}` : ""
-      }&_sort=date&_order=dsc&_page=${page}&_limit=9`
-    );
-    const resData = await response.json();
+    try {
+      const response = await fetch(
+        `http://localhost:3000/workshops?${
+          category ? `category=${category}` : ""
+        }&_sort=date&_order=dsc&_page=${page}&_limit=9`
+      );
 
-    if (page !== 1) {
-      data = [...getState().storedData, ...resData];
-    } else {
-      data = [...resData];
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+
+      const resData = await response.json();
+
+      if (page !== 1) {
+        data = [...getState().storedData, ...resData];
+      } else {
+        data = [...resData];
+      }
+
+      dispatch({ type: FETCH_DATA, data });
+    } catch (err) {
+      throw err;
     }
-
-    dispatch({ type: FETCH_DATA, data });
   };
 };
 

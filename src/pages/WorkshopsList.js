@@ -18,6 +18,7 @@ const WorkshopsList = (props) => {
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isReadMore, setIsReadMore] = useState(false);
+  const [error, setError] = useState();
 
   const handleSelectChange = (value) => {
     history.push(`/${value}`);
@@ -28,7 +29,11 @@ const WorkshopsList = (props) => {
       setIsReadMore(true);
     }
     setIsLoading(true);
-    await dispatch(fetchData(cat, page));
+    try {
+      await dispatch(fetchData(cat, page));
+    } catch (err) {
+      setError(err.message);
+    }
     setIsLoading(false);
     setIsReadMore(false);
   }, [dispatch, cat, page]);
@@ -44,6 +49,12 @@ const WorkshopsList = (props) => {
       window.scrollBy(0, -200);
     }
   });
+
+  // useEffect(() => {
+  //   if (error) {
+  //     alert(`${error}  Please try again`, error, [{ text: "Okay" }]);
+  //   }
+  // }, [error]);
 
   const displayedWorkshops = data.map((workshop) => (
     <WorkshopBox key={workshop.id} workshopInfo={workshop} />
@@ -133,7 +144,19 @@ const WorkshopsList = (props) => {
         </Link>
       </div>
       <div className="mainContent">
-        {isLoading && !isReadMore ? (
+        {error ? (
+          <div className="errorContainer">
+            <p className="errorTxt">{error}</p>
+            <div
+              className="tryAgain"
+              onClick={() => {
+                getData();
+              }}
+            >
+              {isLoading ? <ClipLoader size={10} /> : "Try Again"}
+            </div>
+          </div>
+        ) : isLoading && !isReadMore ? (
           <div className="spinnerContainer">
             <ClipLoader size={150} />
           </div>

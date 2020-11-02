@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Link, useHistory, useParams, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import { BeatLoader } from "react-spinners";
+import { ClipLoader } from "react-spinners";
 
 import WorkshopBox from "../components/WorkshopBox";
 import { fetchData } from "../store/actions";
@@ -135,7 +135,7 @@ const WorkshopsList = (props) => {
       <div className="mainContent">
         {isLoading && !isReadMore ? (
           <div className="spinnerContainer">
-            <BeatLoader />
+            <ClipLoader size={150} />
           </div>
         ) : (
           displayedWorkshops
@@ -149,7 +149,7 @@ const WorkshopsList = (props) => {
       >
         {isReadMore ? (
           <div className="spinnerContainer">
-            <BeatLoader />
+            <ClipLoader />
           </div>
         ) : (
           "Load More"

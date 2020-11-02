@@ -6,8 +6,7 @@ import moment from "moment";
 import WorkshopBox from "../components/WorkshopBox";
 import { addToCart } from "../store/actions";
 
-import WORKSHOPS from "../data/workshops";
-import { BeatLoader } from "react-spinners";
+import { ClipLoader } from "react-spinners";
 
 const WorkshopDetails = (props) => {
   const isCartOn = useSelector((state) => state.isCartOn);
@@ -70,7 +69,7 @@ const WorkshopDetails = (props) => {
 
         {isLoading ? (
           <div className="spinnerContainer">
-            <BeatLoader />
+            <ClipLoader size={150} />
           </div>
         ) : (
           <div className="detailsBox">

@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { ClipLoader } from "react-spinners";
 
 import WorkshopBox from "../components/WorkshopBox";
+
 import { fetchData } from "../store/actions";
 
 const WorkshopsList = (props) => {

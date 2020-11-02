@@ -5,10 +5,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { ReactComponent as Logo } from "../assets/tinel-logo.svg";
 
 import CartPopupBox from "./CartPopupBox";
+
 import { openCart } from "../store/actions";
 
 const Header = (props) => {
   const dispatch = useDispatch();
+
   const isCartOn = useSelector((state) => state.isCartOn);
   const cartItems = useSelector((state) => state.cart.cartItems);
 

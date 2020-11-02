@@ -16,12 +16,6 @@
   position: relative;
 }
 
-/* .App::before {
-  content: "";
-  display: block;
-  height: 60px;
-} */
-
 img {
   max-width: 100%;
   display: block;
@@ -32,12 +26,16 @@ a {
   color: #000;
 }
 
+/* ------------------ SPINNER ------------------ */
+
 .spinnerContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   flex: 1;
 }
+
+/* ------------------ SPINNER ------------------ */
 
 /* ------------------ ERROR ------------------ */
 
@@ -180,7 +178,7 @@ a {
   color: black;
 }
 
-.cartPopupText {
+.popupText {
   font-size: 0.7rem;
   font-weight: 700;
   margin-left: 10px;
@@ -228,6 +226,10 @@ a {
 
 .popupBtn:hover {
   background-color: var(--hoverBlue);
+}
+
+.disableBtn {
+  cursor: not-allowed;
 }
 
 @media (max-width: 500px) {
@@ -423,7 +425,7 @@ a {
       "cagetories .   main"
       ".          .       ."
       ".          .   load";
-    padding-top: 60px;
+    padding-top: 80px;
   }
 
   .categoriesSelect {
@@ -596,7 +598,6 @@ a {
 .buyInfo {
   display: flex;
   justify-content: space-between;
-  /* width: 100%; */
 }
 
 .price {
@@ -870,8 +871,6 @@ a {
   padding: 8px 15px;
   outline: none;
   border-radius: 5px;
-  /* margin-right: 5px;
-  margin-bottom: 5px; */
   cursor: pointer;
 }
 
@@ -1246,7 +1245,3 @@ a {
 }
 
 /* ------------------ MODAL ------------------ */
-
-.disableBtn {
-  cursor: not-allowed;
-}

@@ -3,22 +3,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import moment from "moment";
 
-import WorkshopBox from "../components/WorkshopBox";
-import { addToCart } from "../store/actions";
-
 import { ClipLoader } from "react-spinners";
 
+import WorkshopBox from "../components/WorkshopBox";
+
+import { addToCart } from "../store/actions";
+
 const WorkshopDetails = (props) => {
+  const dispatch = useDispatch();
+  const { id } = useParams();
+
   const isCartOn = useSelector((state) => state.isCartOn);
+
   const [currentWorkshop, setCurrentWorkshop] = useState([]);
   const [userName, setUserName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
   const [selectValue, setSelectValue] = useState(1);
   const [similar, setSimilar] = useState([]);
-
-  const dispatch = useDispatch();
-  const { id } = useParams();
 
   const url = `http://localhost:3000/workshops/${id}`;
 
@@ -29,10 +31,6 @@ const WorkshopDetails = (props) => {
   const handleAddToCart = (e) => {
     dispatch(addToCart(currentWorkshop, parseInt(selectValue)));
   };
-
-  const displayedSimilarWorkshops = similar.map((workshop) => (
-    <WorkshopBox key={workshop.id} workshopInfo={workshop} />
-  ));
 
   const fetchWorkshop = useCallback(async () => {
     setIsLoading(true);
@@ -72,7 +70,9 @@ const WorkshopDetails = (props) => {
     fetchWorkshop();
   }, [fetchWorkshop]);
 
-  console.log(error);
+  const displayedSimilarWorkshops = similar.map((workshop) => (
+    <WorkshopBox key={workshop.id} workshopInfo={workshop} />
+  ));
 
   return (
     <div className="detailsPage">

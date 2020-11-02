@@ -2,7 +2,10 @@ import React, { useReducer, useCallback, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
+import { ClipLoader } from "react-spinners";
+
 import Input from "./Input";
+
 import {
   toggleCheckout,
   closeModal,
@@ -10,8 +13,6 @@ import {
   emptyCart,
   storeOrders,
 } from "../store/actions";
-
-import { ClipLoader } from "react-spinners";
 
 const FORM_INPUT_UPDATE = "FORM_INPUT_UPDATE";
 
@@ -39,10 +40,11 @@ const formReducer = (state, action) => {
 };
 
 const CheckoutModal = (props) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
-  const history = useHistory();
-  const dispatch = useDispatch();
 
   const [formState, dispatchFormState] = useReducer(formReducer, {
     inputValues: {
@@ -65,8 +67,6 @@ const CheckoutModal = (props) => {
     },
     formIsValid: false,
   });
-
-  // console.log(formState);
 
   const inputChangeHandler = useCallback(
     (inputIdentifier, inputValue, inputValidity) => {

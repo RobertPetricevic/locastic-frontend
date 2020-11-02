@@ -64,8 +64,6 @@ const Input = (props) => {
     onInputChange(id, inputState.value, inputState.isValid);
   }, [inputState, onInputChange, id]);
 
-  // console.log(inputState);
-
   return (
     <div className={`inputContainer ${props.extraContainerClass}`}>
       <label htmlFor={props.id} className="inputLabel">
@@ -81,7 +79,7 @@ const Input = (props) => {
         type={props.type}
         placeholder={props.placeholder}
         className={`inputField ${
-          inputState.focused
+          inputState.focused || inputState.value !== ""
             ? inputState.isValid
               ? "inputFieldVaild"
               : "inputFieldInvaild"

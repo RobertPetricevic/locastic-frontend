@@ -5,10 +5,12 @@ import { addToCartSelect, removeFromCart } from "../store/actions";
 
 const WorkshopCartBox = ({ workshopInfo }) => {
   const dispatch = useDispatch();
+
   const cartItems = useSelector((state) => state.cart.cartItems);
-  const currentItem = cartItems.find((item) => item.id === workshopInfo.id);
 
   const [selectValue, setSelectValue] = useState(1);
+
+  const currentItem = cartItems.find((item) => item.id === workshopInfo.id);
 
   const handleChange = (e) => {
     setSelectValue(e.target.value);

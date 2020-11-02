@@ -2,12 +2,14 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import WorkshopCartBox from "./WorkshopCartBox";
+
 import { closeCart, openModal } from "../store/actions";
 
 const CartPopupBox = (props) => {
+  const dispatch = useDispatch();
+
   const cartItems = useSelector((state) => state.cart.cartItems);
   const cartTotal = useSelector((state) => state.cart.cartTotal);
-  const dispatch = useDispatch();
 
   const cartText = (num) => {
     if (num === 0) return "Cart is Empty";
@@ -28,7 +30,7 @@ const CartPopupBox = (props) => {
               name={`cart${cartItems.length === 0 ? "-outline" : ""}`}
             ></ion-icon>
           </div>
-          <p className="cartPopupText">{cartText(cartItems.length)}</p>
+          <p className="popupText">{cartText(cartItems.length)}</p>
           {cartItems.length !== 0 && <div className="blueDot"></div>}
         </div>
         <p

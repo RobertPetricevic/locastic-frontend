@@ -41,7 +41,6 @@ const WorkshopsList = (props) => {
   }, [dispatch, cat, page]);
 
   useEffect(() => {
-    console.log(location.state);
     if (location.state) {
       const item = document.querySelector(".scroll-" + location.state);
       if (item) {
@@ -172,7 +171,7 @@ const WorkshopsList = (props) => {
       <div
         className={`loadMore ${isReadMore && "loadSpinner"}`}
         onClick={() => {
-          history.replace({ pathname: "/", state: undefined });
+          history.replace({ pathname: `/${cat ? cat : ""}`, state: undefined });
           setPage((prevNum) => prevNum + 1);
         }}
       >

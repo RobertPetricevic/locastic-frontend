@@ -32,6 +32,21 @@ const WorkshopDetails = (props) => {
     dispatch(addToCart(currentWorkshop, parseInt(selectValue)));
   };
 
+  const categoryIcon = (catName) => {
+    switch (catName) {
+      case "design":
+        return "fas fa-paint-brush";
+      case "frontend":
+        return "fas fa-desktop";
+      case "backend":
+        return "fas fa-code";
+      case "marketing":
+        return "fas fa-bolt";
+      default:
+        break;
+    }
+  };
+
   const fetchWorkshop = useCallback(async () => {
     setIsLoading(true);
     setError(null);
@@ -115,7 +130,11 @@ const WorkshopDetails = (props) => {
               <div className="detailsInfo">
                 <div className="detailsSideInfo">
                   <div className="detailsCategoryIconContainer">
-                    <i className="fas fa-paint-brush detailsCategoryIcon"></i>
+                    <i
+                      className={`${categoryIcon(
+                        currentWorkshop.category
+                      )} detailsCategoryIcon`}
+                    ></i>
                   </div>
                   <p className="date">
                     <i className="far fa-calendar-alt"></i>{" "}
